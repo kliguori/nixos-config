@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: {
   imports = [
-    ../../modules/desktop-environments/hyprland.nix
+    ../../modules/system/desktop-environments/hyprland.nix
   ];
 }
