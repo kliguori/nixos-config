@@ -1,0 +1,8 @@
+{ config, lib, pkgs, ... }: {
+  imports = [ 
+    ./hyprland.nix
+    ./hyprlock.nix
+    ./hypridle.nix
+    ./hyprpaper.nix 
+  ];
+}
