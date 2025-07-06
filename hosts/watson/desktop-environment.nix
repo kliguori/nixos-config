@@ -1,7 +1,13 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 
-{
-  imports = [] ++ lib.optionals (config.desktopEnv == "hyprland") [
-    ../../system/desktop-environments/hyprland.nix                  # Import hyprland module
+let
+  desktopModules = {
+    hyprland = ../../system/desktop-environments/hyprland.nix;
+  };
+  selectedDE = config.desktopEnv;
+  selectedModule = builtins.getAttr selectedDE desktopModules;
+in {
+  imports = lib.mkIf (builtins.hasAttr selectedDE desktopModules) [
+    (import selectedModule)
   ];
 }
