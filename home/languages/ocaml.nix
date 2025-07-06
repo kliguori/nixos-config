@@ -5,10 +5,10 @@
     # Core OCaml tooling
     ocaml
     dune_3
-    findlib # to dynamically find ocaml packages for use in utop
     # opam  # will try not to use, want to manage packages with nix. 
 
     # OCaml libraries/tools
+    ocamlPackages.findlib      # Dynamically find ocaml packages for use in utop
     ocamlPackages.base         # Jane Street's standard lib
     ocamlPackages.utop         # REPL
     ocamlPackages.merlin       # Editor integration
