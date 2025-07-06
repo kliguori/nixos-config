@@ -33,7 +33,9 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 backupFileExtension = "backup";
-                users.kevin = import ./hosts/watson/home.nix;
+                users.kevin = import ./hosts/watson/home.nix {
+                  inherit config lib pkgs desktopEnv;
+                };
               };
             }
           ];
