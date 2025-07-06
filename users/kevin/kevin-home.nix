@@ -1,4 +1,4 @@
-{ config, lib, osConfig, pkgs, ... }: 
+{ config, lib, pkgs, osConfig, ... }: 
 
 {
   home = {
@@ -17,8 +17,6 @@
     ];
   };
   imports = [
-    ../../themes/colors/dracula.nix   # Dracula theme
-    ../../themes/fonts/nerd-font.nix  # JetbrainsMono Nerd Font
     ../../home/waybar/waybar.nix      # Waybar theme
     ../../home/wofi/wofi.nix          # Wofi theme
     ../../home/git/git.nix            # Git config

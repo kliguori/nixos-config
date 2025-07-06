@@ -2,7 +2,9 @@
 
 {
   imports = [
-    ./system-options.nix
+    ./system-options.nix             # Include system options
+    ../../themes/colors/dracula.nix  # Include dracula color scheme
+    ../../themes/fonts/nerd-font.nix # Include JetBrainsMono NerdFont
   ];
   
   # Basic settings

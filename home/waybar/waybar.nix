@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
   
 let
-  f = config.fonts;
-  c = config.theme.colors;
+  f = osConfig.fonts;
+  c = osConfig.theme.colors;
 in {
   programs.waybar = {
     enable = true;

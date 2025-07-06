@@ -1,7 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
-  c = config.theme.colors;
+  c = osConfig.theme.colors;
 in {
   programs.starship = {
     enable = true;

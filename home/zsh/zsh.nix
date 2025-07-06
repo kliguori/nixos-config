@@ -1,7 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
-  c = config.theme.colors;
+  c = osConfig.theme.colors;
 in {
   programs.zsh = {
     enable = true;
@@ -11,6 +11,8 @@ in {
     shellAliases = {
       ll = "ls -lah";
       gs = "git status";
+      ga = "git add";
+      gc = "git commit";
       cl = "clear";
       rebuild = "sudo nixos-rebuild switch --flake .#$(hostname)";
     };
