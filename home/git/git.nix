@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: 
+
+{
   programs.git = {
     enable = true;
-    userName = "Kevin Liguori";
-    userEmail = "kevin@example.com";
+    userName = "MinimumAction";
+    userEmail = "liguori.km@gmail.com";
     aliases = {};
     extraConfig = {
       init.defaultBranch = "main";

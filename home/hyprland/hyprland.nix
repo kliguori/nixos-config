@@ -5,6 +5,12 @@ let
   fileManager = "thunar";
   menu = "wofi --show drun";
 in {
+  imports = [ 
+    ./hyprlock.nix
+    ./hypridle.nix
+    ./hyprpaper.nix 
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = false;
