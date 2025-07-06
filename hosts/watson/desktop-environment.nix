@@ -8,6 +8,6 @@ let
   selectedModule = builtins.getAttr selectedDE desktopModules;
 in {
   imports = lib.mkIf (builtins.hasAttr selectedDE desktopModules) [
-    (import (builtins.getAttr selectedDE desktopModules));
+    (import (builtins.getAttr selectedDE desktopModules))
   ];
 }
