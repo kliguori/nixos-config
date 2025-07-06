@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, desktopEnv, ... }: 
 
 {
   home = {
@@ -19,11 +19,12 @@
   imports = [
     ../../themes/colors/dracula.nix   # Dracula theme
     ../../themes/fonts/nerd-font.nix  # JetbrainsMono Nerd Font
-    ../../home/hyprland/hypr.nix      # hyprland config
     ../../home/waybar/waybar.nix      # Waybar theme
     ../../home/wofi/wofi.nix          # Wofi theme
     ../../home/git/git.nix            # Git config
     ../../home/zsh/zsh.nix            # Zsh config
     ../../home/starship/starship.nix  # Starship config
+  ] ++ lib.optionals (desktopEnv == "hyprland") [
+    ../../home/hyprland/hyprland.nix  # hyprland config
   ];
 }
