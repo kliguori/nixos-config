@@ -24,7 +24,7 @@
     ../../home/git/git.nix            # Git config
     ../../home/zsh/zsh.nix            # Zsh config
     ../../home/starship/starship.nix  # Starship config
-  ] ++ lib.optionals (config.desktopEnv == "hyprland") [
+  ] ++ lib.optionals (osConfig.desktopEnv == "hyprland") [
     ../../home/hyprland/hyprland.nix  # hyprland config
   ];
 }
