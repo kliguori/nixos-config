@@ -7,7 +7,7 @@
     stateVersion = "25.05";
     packages = with pkgs; [
       brave
-      ghostty
+      #ghostty
       kitty
       mpv
       spotify
@@ -17,9 +17,9 @@
     ];
   };
   imports = [
-    ../../home/waybar/waybar.nix      # Waybar theme
-    ../../home/wofi/wofi.nix          # Wofi theme
-    ../../home/ghostty/ghostty.nix    # Ghostty theme
+    ../../home/waybar/waybar.nix      # Waybar config
+    ../../home/wofi/wofi.nix          # Wofi config
+    ../../home/ghostty/ghostty.nix    # Ghostty config
     ../../home/git/git.nix            # Git config
     ../../home/zsh/zsh.nix            # Zsh config
     ../../home/starship/starship.nix  # Starship config

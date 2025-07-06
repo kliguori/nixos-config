@@ -11,8 +11,6 @@ in {
     shellAliases = {
       ll = "ls -lah";
       gs = "git status";
-      ga = "git add";
-      gc = "git commit";
       cl = "clear";
       rebuild = "sudo nixos-rebuild switch --flake .#$(hostname)";
     };
