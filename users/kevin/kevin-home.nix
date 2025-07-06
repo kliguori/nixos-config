@@ -1,4 +1,4 @@
-{ config, lib, pkgs, desktopEnv, ... }: 
+{ config, lib, pkgs, ... }: 
 
 {
   home = {
@@ -24,7 +24,7 @@
     ../../home/git/git.nix            # Git config
     ../../home/zsh/zsh.nix            # Zsh config
     ../../home/starship/starship.nix  # Starship config
-  ] ++ lib.optionals (desktopEnv == "hyprland") [
+  ] ++ lib.optionals (config.desktopEnv == "hyprland") [
     ../../home/hyprland/hyprland.nix  # hyprland config
   ];
 }

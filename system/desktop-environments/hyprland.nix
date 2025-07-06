@@ -1,7 +1,7 @@
-{ config, lib, pkgs, desktopEnv, ... }: 
+{ config, lib, pkgs, ... }: 
 
 {
-  config = lib.mkIf (desktopEnv == "hyprland") {
+  config = lib.mkIf (config.desktopEnv == "hyprland") {
     # Disable XServer
     services.xserver.enable = false;
   

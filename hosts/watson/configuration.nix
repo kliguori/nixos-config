@@ -11,6 +11,14 @@
   # DO NOT CHANGE
   system.stateVersion = "25.05";
 
+  options.desktopEnv = lib.mkOption {
+    type = lib.types.str;
+    default = "none";
+    description = "The desktop environment in use (e.g. hyprland, gnome, etc.)";
+  };
+
+  desktopEnv = "hyprland";
+
   # Home manager
   home-manager = {
     useGlobalPkgs = true;
