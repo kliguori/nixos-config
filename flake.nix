@@ -15,9 +15,7 @@
       x86L = "x86_64-linux";
       armL = "aarch64-linux";
       armA = "aarch64-darwin";
-      pkgs-x86 = import nixpkgs { system = x86L; };
     in {
-      devShells.${x86L}.ocaml = import ./dev-envs/ocaml.nix { pkgs = pkgs-x86; }; # Ocaml x86 dev shell
       nixosConfigurations = {
         watson = nixpkgs.lib.nixosSystem {       # Thinkpad T14(AMD) config
           system = x86L;                         # System is x86_64 architechture
