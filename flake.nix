@@ -28,17 +28,25 @@
           modules = [
             ./hosts/watson/configuration.nix
             home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                backupFileExtension = "backup";
-                users.kevin = import ./hosts/watson/home.nix;
-              };
-            }
+            #{
+            #  home-manager = {
+            #    useUserPackages = true;
+            #    useGlobalPkgs = true;
+            #    backupFileExtension = "backup";
+            #    users.kevin = import ./hosts/watson/home.nix;
+            #  };
+            #}
           ];
         };
       };
+
+      homeConfigurations.kevin = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./hosts/watson/home.nix
+        ];
+      };
+  
     };
 
 }
