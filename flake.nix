@@ -19,12 +19,6 @@
       nixosConfigurations = {
         watson = nixpkgs.lib.nixosSystem {       # Thinkpad T14(AMD) config
           system = x86L;                         # System is x86_64 architechture
-          specialArgs = {                        # spercialArgs are passed to modules
-            inherit inputs;
-            hostName = "watson";
-            desktopEnv = "hyprland";
-            deviceType = "laptop";  
-          };
           modules = [
             ./hosts/watson/configuration.nix
             home-manager.nixosModules.home-manager
