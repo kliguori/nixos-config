@@ -1,7 +1,6 @@
 { config, lib, osConfig, pkgs, ... }: 
 
 {
-  programs.home-manager.enable = true;
   home = {
     username = "kevin";
     homeDirectory = "/home/kevin";
