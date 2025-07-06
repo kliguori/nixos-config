@@ -31,7 +31,6 @@
       hypridle
       hyprlock
       hyprpaper
-      # gtk3  # not sure what this is for anymore?
       libnotify
       mako
       nautilus

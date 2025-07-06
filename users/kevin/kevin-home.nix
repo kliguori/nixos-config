@@ -19,6 +19,7 @@
   imports = [
     ../../home/waybar/waybar.nix      # Waybar theme
     ../../home/wofi/wofi.nix          # Wofi theme
+    ../../home/ghostty/ghostty.nix    # Ghostty theme
     ../../home/git/git.nix            # Git config
     ../../home/zsh/zsh.nix            # Zsh config
     ../../home/starship/starship.nix  # Starship config
