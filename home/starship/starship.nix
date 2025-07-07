@@ -9,8 +9,9 @@ in {
     settings = {
       format = "$nix_shell$directory$git_branch$git_status$character";
       nix_shell = {
-        format = "($name) ";
+        format = "[($name)]($style) ";
         style = "bold yellow";
+        heuristic = true;
       };
       character = {
         success_symbol = "[❯](bold ${c.green})";

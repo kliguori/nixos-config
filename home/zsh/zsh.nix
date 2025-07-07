@@ -15,5 +15,11 @@ in {
       rebuild = "sudo nixos-rebuild switch --flake .#$(hostname)";
       ocamlShell = "nix develop $HOME/nixos-config#ocaml-dev";
     };
+
+    programs.zsh.initContent = ''
+      dev() {
+        nix develop "$HOME/nixos-config#$1"
+      }
+    '';
   };
 }
