@@ -4,7 +4,7 @@ let
   ocamlPkgs = pkgs.ocamlPackages;
 in
 pkgs.mkShell {
-  name = "ocaml-dev";
+  name = "ocaml";
 
   buildInputs = with ocamlPkgs; [
     ocaml
@@ -15,9 +15,9 @@ pkgs.mkShell {
     stdio
     ppx_jane
   ];
-  
+
   shellHook = ''
-    export NIX_DEV_SHELL_NAME=ocaml-dev
+    export NIX_DEV_SHELL_NAME=ocaml
     export SHELL=${pkgs.zsh}/bin/zsh
     exec ${pkgs.zsh}/bin/zsh --login
   '';
