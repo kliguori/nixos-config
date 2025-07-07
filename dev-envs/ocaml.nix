@@ -16,9 +16,7 @@ pkgs.mkShell {
     ppx_jane
   ];
 
-    # export OCAMLPATH=$(ocamlfind printconf path)
   shellHook = ''
-    echo "Starting Zsh with Starship prompt..."
     export SHELL=${pkgs.zsh}/bin/zsh
     exec ${pkgs.zsh}/bin/zsh --login
   '';
