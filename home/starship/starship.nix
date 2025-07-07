@@ -9,7 +9,7 @@ in {
     settings = {
       format = "$directory$git_branch$git_status$character";
       nix_shell = {
-        format = "(dev: $name) ";
+        format = "($name) ";
         style = "bold yellow";
       };
       character = {

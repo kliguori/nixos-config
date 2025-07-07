@@ -15,8 +15,9 @@ pkgs.mkShell {
     stdio
     ppx_jane
   ];
-
+  
   shellHook = ''
+    export NIX_DEV_SHELL_NAME=ocaml-dev
     export SHELL=${pkgs.zsh}/bin/zsh
     exec ${pkgs.zsh}/bin/zsh --login
   '';
