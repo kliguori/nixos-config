@@ -7,7 +7,7 @@ in {
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = "$directory$git_branch$git_status$character";
+      format = "$nix_shell$directory$git_branch$git_status$character";
       nix_shell = {
         format = "($name) ";
         style = "bold yellow";
