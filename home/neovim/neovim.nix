@@ -17,9 +17,11 @@
       gcc
       gnumake
 
-      # LSP servers
-      ocamlPackages.ocamllsp
+      # LSP servers and formatters
       nil
+      ocamlPackages.ocaml-lsp
+      ocamlPackages.ocamlformat
+      ocamlPackages.merlin
       clang-tools    # provides clangd
       python3Packages.python-lsp-server
       texlab         # for LaTeX

@@ -8,15 +8,12 @@ pkgs.mkShell {
 
   buildInputs = with ocamlPkgs; [
     ocaml
-    findlib
+    utop
     dune_3
+    findlib
     base
     stdio
     ppx_jane
-    utop
-    merlin
-    ocaml-lsp
-    ocamlformat
   ];
 
   shellHook = ''
