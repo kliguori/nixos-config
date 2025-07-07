@@ -16,7 +16,7 @@ in {
       ocamlShell = "nix develop $HOME/nixos-config#ocaml-dev";
     };
 
-    programs.zsh.initContent = ''
+    initContent = ''
       dev() {
         nix develop "$HOME/nixos-config#$1"
       }
