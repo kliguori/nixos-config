@@ -33,6 +33,7 @@
       nvim-treesitter.withAllGrammars
       telescope-nvim
       lualine-nvim
+      dracula-nvim
 
       nvim-cmp
       cmp-nvim-lsp
@@ -45,7 +46,7 @@
       vim.o.number = true
       vim.o.relativenumber = true
       vim.o.termguicolors = true
-      vim.cmd("colorscheme gruvbox")
+      vim.cmd("colorscheme dracula")
       require("lualine").setup()
 
       -- Treesitter
