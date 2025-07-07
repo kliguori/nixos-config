@@ -13,7 +13,7 @@ in {
       gs = "git status";
       cl = "clear";
       rebuild = "sudo nixos-rebuild switch --flake .#$(hostname)";
-      ocamlShell = "nix develop ~/nixos-config#ocaml-dev";
+      ocamlShell = "nix develop ~/nixos-config#ocaml";
     };
   };
 }
