@@ -5,7 +5,7 @@ ocamlPackages = pkgs.ocamlPackages;
 in {
   home.packages = with ocamlPackages; [
     ocaml
-    findlib    `
+    findlib    
     dune_3
     base
     stdio
