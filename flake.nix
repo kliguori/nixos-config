@@ -15,7 +15,9 @@
       x86L = "x86_64-linux";
       armL = "aarch64-linux";
       armA = "aarch64-darwin";
+      pkgsx86 = import nixpkgs { system = "x86_64-linux"; };
     in {
+      devShells.${x86L}.default = import ./dev-envs/ocaml.nix { pkgs = pkgsx86; };
       nixosConfigurations = {
         watson = nixpkgs.lib.nixosSystem {       # Thinkpad T14(AMD) config
           system = x86L;                         # System is x86_64 architechture
