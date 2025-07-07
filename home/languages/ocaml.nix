@@ -1,15 +1,18 @@
 { config, lib, pkgs, osConfig, ... }:
 
 {
-  home.packages = with pkgs.ocamlPackages; [
+  home.packages = with pkgs; [
     ocaml
-    dune_3
-    merlin
     ocamlfind
-    ocaml-lsp
-    utop
-    base
-    stdio
-    ppx_jane
+    dune_3
+    
+    ocamlPackages.base
+    ocamlPackages.stdio
+    ocamlPackages.ppx_jane
+    
+    ocamlPackages.utop
+    ocamlPackages.merlin
+    ocamlPackages.ocaml-lsp
+    ocamlPackages.ocamlformat
   ];
 }
