@@ -3,8 +3,9 @@
 {
   home.packages = with pkgs; [
     # Core OCaml tooling
-    ocaml  # OCaml
-    dune_3 # Dune build system
+    ocaml       # OCaml
+    dune_3      # Dune build system
+    ocamlformat # Auto formatting
 
     # OCaml tools
     ocamlPackages.findlib      # Dynamically find ocaml packages for use in utop
