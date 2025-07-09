@@ -14,11 +14,13 @@
   # Set desktop environment
   # desktopEnv = "hyprland";
 
-  services.xserver = {
-      enable = true;
-      displayManager.lightdm.enable = true;
+  services = {
+      xserver = {
+        enable = true;
+        displayManager.lightdm.enable = true;
+        windowManager.xmonad.enable = true;
+      };
       displayManager.defaultSession = "none+xmonad";
-      windowManager.xmonad.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
