@@ -22,7 +22,7 @@
     ../../home/zsh/zsh.nix            # Zsh config
     ../../home/starship/starship.nix  # Starship config
     ../../home/neovim/neovim.nix      # Neovim config
-  ] ++ lib.optional (osConfig.desktopEnv == "hyprland") [
+  ] ++ lib.optionals (osConfig.desktopEnv == "hyprland") [
     ../../home/hyprland/hyprland.nix  # Wofi config
     ../../home/wofi/wofi.nix          # Wofi config
     ../../home/waybar/waybar.nix      # Waybar config
