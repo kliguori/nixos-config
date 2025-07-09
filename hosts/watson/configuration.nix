@@ -27,7 +27,6 @@
     };
 
     services.dbus.enable = true;
-    services.enableUnifiedCgroupHierarchy = true;
     
     environment.systemPackages = with pkgs; [
       haskellPackages.ghc
