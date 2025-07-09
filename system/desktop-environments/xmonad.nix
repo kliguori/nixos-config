@@ -14,6 +14,7 @@ in {
       hp.ghc
       hp.xmonad
       hp.xmonad-contrib
+      xorg.xinit
       rofi
       ghostty
       xmobar
