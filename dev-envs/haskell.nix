@@ -1,19 +1,23 @@
 { pkgs }:
 
 let
-  haskellPkgs = pkgs.haskellPackages;
+  hsPkgs = pkgs.haskellPackages;
 in
 pkgs.mkShell {
-  name = "haskell";
-  packages = with haskellPackages; [
+  name = "haskell-dev";
+
+  buildInputs = with hsPkgs; [
     ghc
-    haskell-language-server
     cabal-install
-    stack
+    aeson
+    websockets
+    http-client
+    text
+    bytestring
   ];
 
   shellHook = ''
-    export NIX_DEV_SHELL_NAME=haskell
+    export NIX_DEV_SHELL_NAME=haskell-dev
     export SHELL=${pkgs.zsh}/bin/zsh
     exec ${pkgs.zsh}/bin/zsh --login
   '';
