@@ -12,7 +12,7 @@
   system.stateVersion = "25.05";
 
   # Set desktop environment
-  desktopEnv = "hyprland";
+  desktopEnv = "xmonad";
 
   # Home manager
   home-manager = {
