@@ -18,6 +18,14 @@
       displayManager.defaultSession = "none+xmonad";
     };
 
+    services.picom = {
+      enable = true;
+      settings = {
+        vsync = true;
+        backend = "glx";
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       haskellPackages.ghc
       haskellPackages.xmonad
