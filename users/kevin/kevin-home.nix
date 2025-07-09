@@ -23,8 +23,6 @@
     ../../home/git/git.nix            # Git config
     ../../home/zsh/zsh.nix            # Zsh config
     ../../home/starship/starship.nix  # Starship config
-    ../../home/neovim/neovim.nix      # Neovim config
-  ] ++ lib.optionals (osConfig.desktopEnv == "hyprland") [
-   # ../../home/hyprland/hyprland.nix  # hyprland config
+    #../../home/neovim/neovim.nix      # Neovim config
   ];
 }
