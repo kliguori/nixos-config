@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let 
-  hp = pkgs.haskellPackages;
-in {
+{
   config = lib.mkIf (config.desktopEnv == "xmonad") {
     services.xserver = {
       enable = true;
@@ -11,9 +9,9 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
-      hp.ghc
-      hp.xmonad
-      hp.xmonad-contrib
+      haskellPackages.ghc
+      haskellPackages.xmonad
+      haskellPackages.xmonad-contrib
       xorg.xinit
       rofi
       ghostty
