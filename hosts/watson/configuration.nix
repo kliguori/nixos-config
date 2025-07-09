@@ -17,8 +17,12 @@
   services = {
       xserver = {
         enable = true;
+        startDbusSession = true;
         displayManager.lightdm.enable = true;
-        windowManager.xmonad.enable = true;
+        windowManager.xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+        };
       };
       displayManager.defaultSession = "none+xmonad";
     };
