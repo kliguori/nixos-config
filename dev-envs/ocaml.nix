@@ -14,6 +14,10 @@ pkgs.mkShell {
     base
     stdio
     ppx_jane
+    lwt
+    lwt_ppx
+    yojson
+    cohttp-lwt-unix
   ];
 
   shellHook = ''
