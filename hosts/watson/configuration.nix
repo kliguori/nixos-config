@@ -17,7 +17,7 @@
   services.xserver = {
       enable = true;
       displayManager.lightdm.enable = true;
-      displayManager.defaultSession = "xmonad+xsession";
+      displayManager.defaultSession = "none+xmonad";
       windowManager.xmonad.enable = true;
     };
 
