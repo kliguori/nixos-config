@@ -17,7 +17,6 @@
   services = {
       xserver = {
         enable = true;
-        startDbusSession = true;
         displayManager.lightdm.enable = true;
         windowManager.xmonad = {
           enable = true;
@@ -27,6 +26,9 @@
       displayManager.defaultSession = "none+xmonad";
     };
 
+    services.dbus.enable = true;
+    services.enableUnifiedCgroupHierarchy = true;
+    
     environment.systemPackages = with pkgs; [
       haskellPackages.ghc
       haskellPackages.xmonad
