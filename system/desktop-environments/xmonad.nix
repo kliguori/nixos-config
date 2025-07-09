@@ -12,7 +12,7 @@
       haskellPackages.ghc
       haskellPackages.xmonad
       haskellPackages.xmonad-contrib
-      xorg.xinit
+      pkgs.xorg.xinit
       rofi
       ghostty
       xmobar
