@@ -25,6 +25,6 @@
     ../../home/starship/starship.nix  # Starship config
     ../../home/neovim/neovim.nix      # Neovim config
   ] ++ lib.optionals (osConfig.desktopEnv == "hyprland") [
-    ../../home/hyprland/hyprland.nix  # hyprland config
+   # ../../home/hyprland/hyprland.nix  # hyprland config
   ];
 }
