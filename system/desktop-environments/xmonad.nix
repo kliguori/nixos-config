@@ -1,4 +1,4 @@
-{ config, lib, pksg }:
+{ config, lib, pkgs }:
 
 {
   config = lib.mkIf (config.desktopEnv == "xmonad") {
