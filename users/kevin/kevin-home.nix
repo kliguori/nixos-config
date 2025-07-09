@@ -17,8 +17,8 @@
     ];
   };
   imports = [
-    ../../home/waybar/waybar.nix      # Waybar config
-    ../../home/wofi/wofi.nix          # Wofi config
+    #../../home/waybar/waybar.nix      # Waybar config
+    #../../home/wofi/wofi.nix          # Wofi config
     ../../home/ghostty/ghostty.nix    # Ghostty config
     ../../home/git/git.nix            # Git config
     ../../home/zsh/zsh.nix            # Zsh config
