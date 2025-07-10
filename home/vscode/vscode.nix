@@ -7,12 +7,12 @@
     extensions = with pkgs.vscode-extensions; [
       dracula-theme.theme-dracula
       haskell.haskell
+      bbenoist.nix
     ];
 
     userSettings = {
       "workbench.colorTheme" = "Dracula";
       "editor.formatOnSave" = true;
-      "haskell.formattingProvider" = "ormolu";
       "files.insertFinalNewline" = true;
     };
   };

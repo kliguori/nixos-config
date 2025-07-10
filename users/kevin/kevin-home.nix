@@ -12,9 +12,12 @@
       spotify
       tokyonight-gtk-theme
       virt-manager
-      haskellPackages.haskell-language-server
-      haskellPackages.hlint
-      haskellPackages.ormolu
+      nil                                     # Nix Language server
+      nixpkgs-fmt                             # Nix Formatter
+      statix                                  # Nix Linter
+      haskellPackages.haskell-language-server # Haskell Language Server
+      haskellPackages.ormolu                  # Haskell Formatter
+      haskellPackages.hlint                   # Haskell Linter                  
     ];
   };
   imports = [
