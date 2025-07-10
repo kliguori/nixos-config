@@ -15,6 +15,10 @@
         "workbench.colorTheme" = "Dracula";
         "editor.formatOnSave" = true;
         "files.insertFinalNewline" = true;
+
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        "nix.formatterPath" = "nixpkgs-fmt";
       };
     };
   };
