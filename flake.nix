@@ -17,8 +17,10 @@
       armA = "aarch64-darwin";
       pkgsx86 = import nixpkgs { system = "x86_64-linux"; };
     in {
-      devShells.${x86L}.ocaml-dev = import ./dev-envs/ocaml.nix { pkgs = pkgsx86; };
-      devShells.${x86L}.haskell-dev = import ./dev-envs/haskell.nix { pkgs = pkgsx86; };
+      devShells.${x86L} = {
+        ocaml-dev = import ./dev-envs/ocaml.nix { pkgs = pkgsx86; };
+        haskell-dev = import ./dev-envs/haskell.nix { pkgs = pkgsx86; };
+      };
       nixosConfigurations = {
         watson = nixpkgs.lib.nixosSystem {       # Thinkpad T14(AMD) config
           system = x86L;                         # System is x86_64 architechture

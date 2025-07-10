@@ -14,6 +14,9 @@
       tokyonight-gtk-theme
       virt-manager
       vscode
+      haskell-language-server
+      hlint
+      ormolu
     ];
   };
   imports = [
