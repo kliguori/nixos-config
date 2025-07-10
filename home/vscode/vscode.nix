@@ -15,6 +15,9 @@
         "workbench.colorTheme" = "Dracula";
         "editor.formatOnSave" = true;
         "files.insertFinalNewline" = true;
+        
+        "haskell.manageHLS" = "PATH";
+        "haskell.manageGHC" = "PATH";
 
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
