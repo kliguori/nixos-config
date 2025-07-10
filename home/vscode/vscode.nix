@@ -8,6 +8,7 @@
       extensions = with pkgs.vscode-extensions; [
         dracula-theme.theme-dracula
         haskell.haskell
+        justusadam.language-haskell # required for haskell language server
         bbenoist.nix
       ];
       userSettings = {
