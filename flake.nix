@@ -12,18 +12,28 @@
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
 
     let 
-      x86L = "x86_64-linux";
-      armL = "aarch64-linux";
-      armA = "aarch64-darwin";
-      pkgsx86 = import nixpkgs { system = "x86_64-linux"; };
-    in {
-      devShells.${x86L} = {
-        ocaml-dev = import ./dev-envs/ocaml.nix { pkgs = pkgsx86; };
-        haskell-dev = import ./dev-envs/haskell.nix { pkgs = pkgsx86; };
+      x86 = "x86_64-linux";
+      aaL = "aarch64-linux";
+      aaA = "aarch64-darwin";
+      pkgsx86 = import nixpkgs { 
+        system = "x86_64-linux"; 
+        config.allowUnfree = true;
       };
+    in {
+
+      # Dev Shells
+      devShells.${x86}.python-dev = import ./dev-envs/python.nix { pkgs = pkgsx86; };
+      
+      # Configurations
       nixosConfigurations = {
-        watson = nixpkgs.lib.nixosSystem {       # Thinkpad T14(AMD) config
-          system = x86L;                         # System is x86_64 architechture
+        
+        # Mycroft: Dell laptop home server (Intel & Nvidia)
+        
+        # Sherlock: Desktop (AMD Ryzen 9 & Nvidia RTX2080Ti)
+
+        # Watson: Thinkpad T14 (AMD)
+        watson = nixpkgs.lib.nixosSystem {       
+          system = x86;                         
           modules = [
             ./hosts/watson/configuration.nix
             home-manager.nixosModules.home-manager
@@ -37,6 +47,11 @@
             }
           ];
         };
+
+        # Lestrade: Dell XPS 15 (Intel & Nvidia) 
+
+        # Mary: Custom ISO
+        
       };  
     };
 

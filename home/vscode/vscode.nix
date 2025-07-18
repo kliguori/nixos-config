@@ -7,21 +7,26 @@
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         dracula-theme.theme-dracula
-        haskell.haskell
-        justusadam.language-haskell # required for haskell language server
+        ms-python.python        # Python support
+        ms-pyright.pyright      # Pyright LSP
         bbenoist.nix
       ];
       userSettings = {
         "workbench.colorTheme" = "Dracula";
-        "editor.formatOnSave" = true;
-        "files.insertFinalNewline" = true;
         
-        "haskell.manageHLS" = "PATH";
-        "haskell.manageGHC" = "PATH";
-
+        "python.languageServer" = "Default";  
+        "python.formatting.provider" = "black";
+        "python.linting.enabled" = true;
+        "python.linting.ruffEnabled" = true;  # needs ruff
+        "python.linting.flake8Enabled" = false;
+        "python.analysis.typeCheckingMode" = "strict";  # or "basic"
+        
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
         "nix.formatterPath" = "nixpkgs-fmt";
+
+        "editor.formatOnSave" = true;
+        "files.insertFinalNewline" = true;
       };
     };
   };

@@ -14,13 +14,6 @@
   # Set desktop environment
   desktopEnv = "hyprland";
 
-  # Home manager
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    backupFileExtension = "backup";
-  };
-
   # Boot settings
   boot = {
     loader = { 
@@ -57,9 +50,7 @@
   };
 
   # Host specific system packages
-  #environment.systemPackages = with pkgs; [
-  #  kitty #just in case home-manager shits the bed
-  #];
+  environment.systemPackages = with pkgs; [];
 
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
 

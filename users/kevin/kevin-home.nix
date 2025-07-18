@@ -10,14 +10,13 @@
       kitty
       mpv
       spotify
-      tokyonight-gtk-theme
       virt-manager
       nil                                     # Nix Language server
       nixpkgs-fmt                             # Nix Formatter
-      statix                                  # Nix Linter
-      haskellPackages.haskell-language-server # Haskell Language Server
-      haskellPackages.ormolu                  # Haskell Formatter
-      haskellPackages.hlint                   # Haskell Linter                  
+      statix                                  # Nix Linter   
+      black                                   # Python Formatter
+      ruff                                    # Python Linter
+      pyright                                 # Python language server
     ];
   };
   imports = [
