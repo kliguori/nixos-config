@@ -49,7 +49,22 @@
         };
 
         # Lestrade: Dell XPS 15 (Intel & Nvidia) 
-
+        lestrade = nixpkgs.lib.nixosSystem {       
+          system = x86;                         
+          modules = [
+            ./hosts/lestrade/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useUserPackages = true;
+                useGlobalPkgs = true;
+                backupFileExtension = "backup";
+                users.kevin = import ./hosts/lestrade/home.nix;
+              };
+            }
+          ];
+        };
+        
         # Mary: Custom ISO
         
       };  
