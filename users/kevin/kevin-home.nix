@@ -9,6 +9,7 @@
       brave
       kitty
       mpv
+      obsidian
       spotify
       virt-manager
       nil                                     # Nix Language server
