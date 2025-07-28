@@ -38,6 +38,12 @@
 
   ];
 
+  # Bind-mount tailscale
+  fileSystems."/var/lib/tailscale" = {
+    device = "/persist/var/lib/tailscale";
+    options = [ "bind" ];
+  };
+
   # Networking
   networking = {
     hostName = "mycroft";
