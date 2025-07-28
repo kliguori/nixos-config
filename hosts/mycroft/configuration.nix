@@ -20,6 +20,7 @@
     zfs.extraPools = [ "rpool" ];
     # rollback root to blank snapshot (note the lib.mkAfter means this command appends, not replaces others)
     initrd.postDeviceCommands = lib.mkAfter ''
+      echo "Rolling back to rpool/root@blank"
       zfs rollback -r rpool/root@blank
     '';
   };
