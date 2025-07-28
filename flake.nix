@@ -28,6 +28,10 @@
       nixosConfigurations = {
         
         # Mycroft: Dell laptop home server (Intel & Nvidia)
+	mycroft = nixpkgs.lib.nixosSystem {
+	  system = x86;
+	  modules = [ ./hosts/mycroft/configuration.nix ];
+	};
         
         # Sherlock: Desktop (AMD Ryzen 9 & Nvidia RTX2080Ti)
 

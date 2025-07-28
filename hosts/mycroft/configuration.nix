@@ -17,7 +17,7 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    zfs.forceImportRoot = true;
+    zfs.extraPools = [ "rpool" ];
     # rollback root to blank snapshot
     #initrd.postDeviceCommands = lib.mkAfter ''
     #  zpool import -Nf zpool
@@ -34,7 +34,7 @@
   # Networking
   networking = {
     hostName = "mycroft";
-    hostId = "36306665";
+    hostId = "ba087eb7";
     networkmanager.enable = true;
   };
 
