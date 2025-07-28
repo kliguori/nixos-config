@@ -31,7 +31,6 @@
   fileSystems."/persist" =
     { device = "rpool/persist";
       fsType = "zfs";
-      options = [ "defaults" ]; # So persist is mounted before any systemd tmpfiles are created or needed
     };
 
   fileSystems."/boot" =

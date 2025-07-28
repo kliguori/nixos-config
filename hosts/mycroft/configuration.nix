@@ -33,8 +33,8 @@
     "L+ /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
 
     # Tailscale
-    "d /persist/var/lib/tailscale 0700 root root - -"
-    "L+ /var/lib/tailscale - - - - /persist/var/lib/tailscale"
+    #"d /persist/var/lib/tailscale 0700 root root - -"
+    #"L+ /var/lib/tailscale - - - - /persist/var/lib/tailscale"
 
   ];
 
