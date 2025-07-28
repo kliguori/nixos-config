@@ -18,18 +18,24 @@
     };
     supportedFilesystems = [ "zfs" ];
     zfs.extraPools = [ "rpool" ];
-    # rollback root to blank snapshot
-    #initrd.postDeviceCommands = lib.mkAfter ''
-    #  zpool import -Nf zpool
-    #  zfs rollback -r zpool/local/root@blank
-    #'';
+    # rollback root to blank snapshot (note the lib.mkAfter means this command appends, not replaces others)
+    initrd.postDeviceCommands = lib.mkAfter ''
+      zfs rollback -r rpool/root@blank
+    '';
   };
 
-  # Symlink etc files after recreating root
-  #systemd.tmpfiles.rules = [
-  #  "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
-  #  "L+ /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
-  #];
+  # Symlink persistant files after rollback of root
+  systemd.tmpfiles.rules = [
+    
+    # NetworkManager
+    "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
+    "L+ /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
+
+    # Tailscale
+    "d /persist/var/lib/tailscale 0700 root root - -"
+    "L+ /var/lib/tailscale - - - - /persist/var/lib/tailscale"
+
+  ];
 
   # Networking
   networking = {
