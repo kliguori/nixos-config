@@ -12,10 +12,16 @@
 
   # Boot settings
   boot = {
+    # Turn off screen after 5 minutes
+    kerelParams = [ "consoleblank=300" ];
+    
+    # Bootloader settings
     loader = { 
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    
+    # ZFS settings
     supportedFilesystems = [ "zfs" ];
     zfs.extraPools = [ "rpool" ];
     # rollback root to blank snapshot (note the lib.mkAfter means this command appends, not replaces others)
@@ -26,17 +32,23 @@
   };
 
   # Symlink persistant files after rollback of root
-  systemd.tmpfiles.rules = [
+  # systemd.tmpfiles.rules = [
     
-    # NetworkManager
-    "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
-    "L+ /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
+  #   # NetworkManager
+  #   "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
+  #   "L+ /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
 
-    # Tailscale
-    #"d /persist/var/lib/tailscale 0700 root root - -"
-    #"L+ /var/lib/tailscale - - - - /persist/var/lib/tailscale"
+  #   # Tailscale
+  #   #"d /persist/var/lib/tailscale 0700 root root - -"
+  #   #"L+ /var/lib/tailscale - - - - /persist/var/lib/tailscale"
 
-  ];
+  # ];
+
+  # Bind-mount networkmanager connections
+  fileSystems."/etc/NetworkManager/system-connections" = {
+    device = "/persist/etc/NetworkManager/system-connections";
+    options = [ "bind" ];
+  };
 
   # Bind-mount tailscale
   fileSystems."/var/lib/tailscale" = {
@@ -57,6 +69,16 @@
   # Host specific system packages
   environment.systemPackages = with pkgs; [];
 
+  # Enable SSH for remote management
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };  
+
+  users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
 
 }

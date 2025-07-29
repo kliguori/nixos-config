@@ -23,10 +23,10 @@
       fsType = "zfs";
     };
 
-  fileSystems."/home" =
-    { device = "rpool/home";
-      fsType = "zfs";
-    };
+  # fileSystems."/home" =
+  #   { device = "rpool/home";
+  #     fsType = "zfs";
+  #   };
 
   fileSystems."/persist" =
     { device = "rpool/persist";

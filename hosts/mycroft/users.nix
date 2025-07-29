@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ../../users/kevin/kevin-profile.nix
+    ../../users/admin/admin-profile.nix
   ];
 }
