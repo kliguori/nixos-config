@@ -13,7 +13,7 @@
   # Boot settings
   boot = {
     # Turn off screen after 5 minutes
-    kerelParams = [ "consoleblank=300" ];
+    kernelParams = [ "consoleblank=300" ];
     
     # Bootloader settings
     loader = { 
