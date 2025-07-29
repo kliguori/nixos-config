@@ -43,6 +43,9 @@
     # Admin user SSH keys
     "d /persist/home/admin/.ssh 0700 admin users - -"
 
+    # nixos-config
+    "d /persist/home/admin/nixos-config 0755 admin users - -"
+
   ];
 
   # Bind-mount networkmanager connections
@@ -60,6 +63,12 @@
   # Bind-mount ssh keys for admin user
   fileSystems."/home/admin/.ssh" = {
     device = "/persist/home/admin/.ssh";
+    options = [ "bind" ];
+  };
+
+  # Bind-mount ssh keys for admin user
+  fileSystems."/home/admin/nixos-config" = {
+    device = "/persist/home/admin/nixos-config";
     options = [ "bind" ];
   };
 
