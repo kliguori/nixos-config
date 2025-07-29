@@ -31,18 +31,19 @@
     '';
   };
 
-  # Symlink persistant files after rollback of root
-  # systemd.tmpfiles.rules = [
+  # Make sure devices exist to mount
+  systemd.tmpfiles.rules = [
     
-  #   # NetworkManager
-  #   "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
-  #   "L+ /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
+    # NetworkManager
+    "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
+    
+    # Tailscale
+    "d /persist/var/lib/tailscale 0700 root root - -"
+    
+    # Admin user SSH keys
+    "d /persist/home/admin/.ssh 0700 admin users - -"
 
-  #   # Tailscale
-  #   #"d /persist/var/lib/tailscale 0700 root root - -"
-  #   #"L+ /var/lib/tailscale - - - - /persist/var/lib/tailscale"
-
-  # ];
+  ];
 
   # Bind-mount networkmanager connections
   fileSystems."/etc/NetworkManager/system-connections" = {
@@ -53,6 +54,12 @@
   # Bind-mount tailscale
   fileSystems."/var/lib/tailscale" = {
     device = "/persist/var/lib/tailscale";
+    options = [ "bind" ];
+  };
+
+  # Bind-mount ssh keys for admin user
+  fileSystems."/home/admin/.ssh" = {
+    device = "/persist/home/admin/.ssh";
     options = [ "bind" ];
   };
 
