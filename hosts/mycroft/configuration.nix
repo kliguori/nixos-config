@@ -31,45 +31,48 @@
     '';
   };
 
-  # Make sure devices exist to mount
+  # Make sure persistant directories exist to mount
   systemd.tmpfiles.rules = [
-    
-    # NetworkManager
-    "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
-    
-    # Tailscale
-    "d /persist/var/lib/tailscale 0700 root root - -"
-    
-    # Admin user SSH keys
-    "d /persist/home/admin/.ssh 0700 admin users - -"
-
-    # nixos-config
-    "d /persist/home/admin/nixos-config 0755 admin users - -"
-
+    "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
+    "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
+    "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
+    "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
+    "d /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
   ];
 
-  # Bind-mount networkmanager connections
-  fileSystems."/etc/NetworkManager/system-connections" = {
-    device = "/persist/etc/NetworkManager/system-connections";
-    options = [ "bind" ];
-  };
+  # Bind-mount persistant directories
+  fileSystems = {
 
-  # Bind-mount tailscale
-  fileSystems."/var/lib/tailscale" = {
-    device = "/persist/var/lib/tailscale";
-    options = [ "bind" ];
-  };
+    # NetworkManager connections
+    "/etc/NetworkManager/system-connections" = {
+      device = "/persist/etc/NetworkManager/system-connections";
+      options = [ "bind" ];
+    };
 
-  # Bind-mount ssh keys for admin user
-  fileSystems."/home/admin/.ssh" = {
-    device = "/persist/home/admin/.ssh";
-    options = [ "bind" ];
-  };
+    # Tailscale state
+    "/var/lib/tailscale" = {
+      device = "/persist/var/lib/tailscale";
+      options = [ "bind" ];
+    };
 
-  # Bind-mount ssh keys for admin user
-  fileSystems."/home/admin/nixos-config" = {
-    device = "/persist/home/admin/nixos-config";
-    options = [ "bind" ];
+    # Admin user SSH keys
+    "/home/admin/.ssh" = {
+      device = "/persist/home/admin/.ssh";
+      options = [ "bind" ];
+    };
+
+    # nixos-config
+    "/home/admin/nixos-config" = {
+      device = "/persist/home/admin/nixos-config";
+      options = [ "bind" ];
+    };
+
+    # Git configuration
+    "/home/admin/.gitconfig" = {
+      device = "/persist/home/admin/.gitconfig";
+      options = [ "bind" ]; 
+    };
+
   };
 
   # Networking
