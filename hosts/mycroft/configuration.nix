@@ -41,38 +41,33 @@
   ];
 
   # Bind-mount persistant directories
-  fileSystems = {
+  fileSystems."/etc/NetworkManager/system-connections" = {
+    device = "/persist/etc/NetworkManager/system-connections";
+    options = [ "bind" ];
+  };
 
-    # NetworkManager connections
-    "/etc/NetworkManager/system-connections" = {
-      device = "/persist/etc/NetworkManager/system-connections";
-      options = [ "bind" ];
-    };
+  # Tailscale state
+  fileSystems."/var/lib/tailscale" = {
+    device = "/persist/var/lib/tailscale";
+    options = [ "bind" ];
+  };
 
-    # Tailscale state
-    "/var/lib/tailscale" = {
-      device = "/persist/var/lib/tailscale";
-      options = [ "bind" ];
-    };
+  # Admin user SSH keys
+  fileSystems."/home/admin/.ssh" = {
+    device = "/persist/home/admin/.ssh";
+    options = [ "bind" ];
+  };
 
-    # Admin user SSH keys
-    "/home/admin/.ssh" = {
-      device = "/persist/home/admin/.ssh";
-      options = [ "bind" ];
-    };
+  # nixos-config
+  fileSystems."/home/admin/nixos-config" = {
+    device = "/persist/home/admin/nixos-config";
+    options = [ "bind" ];
+  };
 
-    # nixos-config
-    "/home/admin/nixos-config" = {
-      device = "/persist/home/admin/nixos-config";
-      options = [ "bind" ];
-    };
-
-    # Git configuration
-    "/home/admin/.gitconfig" = {
-      device = "/persist/home/admin/.gitconfig";
-      options = [ "bind" ]; 
-    };
-
+  # Git configuration
+  fileSystems."/home/admin/.gitconfig" = {
+    device = "/persist/home/admin/.gitconfig";
+    options = [ "bind" ]; 
   };
 
   # Networking
