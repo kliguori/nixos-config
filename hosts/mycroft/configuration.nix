@@ -93,6 +93,9 @@
       PasswordAuthentication = false;
     };
   };  
+  
+  # Services
+  services.jellyfin.enable = true;
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
