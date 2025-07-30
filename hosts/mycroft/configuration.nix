@@ -40,7 +40,7 @@
     "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
     
     # Files
-    "f /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
+    #"f /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
   ];
 
   # Bind-mount persistant directories
@@ -68,9 +68,15 @@
   };
 
   # Git configuration
-  fileSystems."/home/admin/.gitconfig" = {
-    device = "/persist/home/admin/.gitconfig";
-    options = [ "bind" ]; 
+  # fileSystems."/home/admin/.gitconfig" = {
+  #   device = "/persist/home/admin/.gitconfig";
+  #   options = [ "bind" ]; 
+  # };
+
+  # nixos-config
+  fileSystems."/home/admin/testdir" = {
+    device = "/persist/home/admin/testdir";
+    options = [ "bind" ];
   };
 
   # Networking
