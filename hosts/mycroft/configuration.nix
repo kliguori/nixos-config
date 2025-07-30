@@ -31,18 +31,6 @@
     '';
   };
 
-  # Make sure persistant directories exist to mount
-  systemd.tmpfiles.rules = [
-    # Directories
-    "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
-    "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
-    "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
-    "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
-    
-    # Files
-    #"f /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
-  ];
-
   # Bind-mount persistant directories
   fileSystems."/etc/NetworkManager/system-connections" = {
     device = "/persist/etc/NetworkManager/system-connections";
@@ -67,17 +55,20 @@
     options = [ "bind" ];
   };
 
-  # Git configuration
-  # fileSystems."/home/admin/.gitconfig" = {
-  #   device = "/persist/home/admin/.gitconfig";
-  #   options = [ "bind" ]; 
-  # };
+  # Set directory/file permissions and create symlinks
+  systemd.tmpfiles.rules = [
+    # Permissions for bind mounted directories (also creates directories if they don't exist)
+    "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
+    "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
+    "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
+    "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
+    
+    # Permissions for symlinked files (also creates file and parent directories if they don't exist)
+    "f /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
 
-  # nixos-config
-  fileSystems."/home/admin/testdir" = {
-    device = "/persist/home/admin/testdir";
-    options = [ "bind" ];
-  };
+    # Symlink persistent files
+    "L+ /home/admin/.gitconfig - - - - /persist/home/admin/.gitconfig" # Symlink .gitconfig
+  ];
 
   # Networking
   networking = {
