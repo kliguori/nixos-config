@@ -33,11 +33,14 @@
 
   # Make sure persistant directories exist to mount
   systemd.tmpfiles.rules = [
+    # Directories
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
     "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
     "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
     "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
-    "d /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
+    
+    # Files
+    "f /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
   ];
 
   # Bind-mount persistant directories
