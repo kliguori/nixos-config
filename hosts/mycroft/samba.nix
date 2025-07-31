@@ -65,7 +65,7 @@
       };
 
       "shared" = {
-        "path" = "/srv/users/jane";
+        "path" = "/srv/users/shared";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";
