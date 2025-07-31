@@ -16,7 +16,6 @@
     openFirewall = false;
     settings = {
       global = {
-        "security" = "user";
         "workgroup" = "WORKGROUP";
         "server string" = "smbnix";
         "netbios name" = "smbnix";
