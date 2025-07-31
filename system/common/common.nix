@@ -101,6 +101,7 @@
     ncdu
 
     # Storage & filesystem tools
+    cryptsetup
     rsync
     zfs
     parted
