@@ -31,6 +31,7 @@
   services.samba = {
     enable = true;
     openFirewall = false;
+    windbind.enable = false;
     settings = {
       global = {
         "workgroup" = "WORKGROUP";
