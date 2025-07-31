@@ -23,12 +23,16 @@
     
     # ZFS settings
     supportedFilesystems = [ "zfs" ];
-    zfs.extraPools = [ "rpool" ];
+    zfs.extraPools = [ 
+      "rpool" 
+      "data-pool"
+      ];
     # rollback root to blank snapshot (note the lib.mkAfter means this command appends, not replaces others)
     initrd.postDeviceCommands = lib.mkAfter ''
       zpool import -N rpool
       zfs rollback -r rpool/root@blank
     '';
+    initrd.luks.devices."crypt-data".device = "/dev/disk/by-label/luks-storage-drive";
   };
 
   # Bind-mount persistant directories
@@ -54,6 +58,33 @@
     device = "/persist/home/admin/nixos-config";
     options = [ "bind" ];
   };
+
+  # Mount data-pool datasets
+  fileSystems."/srv/media/movies" = {
+    device = "data-pool/media/movies";
+    fsType = "zfs";
+  };
+
+  fileSystems."/srv/media/tv" = {
+    device = "data-pool/media/tv";
+    fsType = "zfs";
+  };
+
+  fileSystems."/srv/users/kevin" = {
+    device = "data-pool/users/kevin";
+    fsType = "zfs";
+  };
+
+  fileSystems."/srv/users/jane" = {
+    device = "data-pool/users/jane";
+    fsType = "zfs";
+  };
+
+  fileSystems."/srv/photos" = {
+    device = "data-pool/photos";
+    fsType = "zfs";
+  };
+
 
   # Set directory/file permissions and create symlinks
   systemd.tmpfiles.rules = [
