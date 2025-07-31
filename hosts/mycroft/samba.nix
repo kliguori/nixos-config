@@ -5,22 +5,22 @@
   users.users.kevin = {
     isNormalUser = true;
     description = "Samba user Kevin";
-    group = "sambakevin";         # primary group
-    extraGroups = [ ];            # no extra groups
-    createHome = false;           # no home directory
-    shell = pkgs.nologin;         # prevent shell login
-    password = "!" ;              # disable system login password
+    group = "sambakevin";                   # primary group
+    extraGroups = [ ];                      # no extra groups
+    createHome = false;                     # no home directory
+    shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
+    hashedPassword = "!" ;                  # disable system login password
   };
 
   users.groups.sambajane = { };
   users.users.jane = {
     isNormalUser = true;
     description = "Samba user Jane";
-    group = "sambajane";          # primary group
-    extraGroups = [ ];            # no extra groups
-    createHome = false;           # no home directory
-    shell = pkgs.nologin;         # prevent shell login
-    password = "!" ;              # disable system login password
+    group = "sambajane";                    # primary group
+    extraGroups = [ ];                      # no extra groups
+    createHome = false;                     # no home directory
+    shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
+    hashedPassword = "!" ;                  # disable system login password
   };
 
   systemd.tmpfiles.rules = [
