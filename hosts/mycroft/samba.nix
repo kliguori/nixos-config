@@ -15,7 +15,7 @@
     enable = true;
     openFirewall = false;  
     
-    services.samba.settings = {
+    settings = {
       "workgroup" = "WORKGROUP";
       "server string" = "NixOS NAS";
       "netbios name" = "nixnas";
