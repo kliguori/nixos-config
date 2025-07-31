@@ -24,8 +24,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/samba/winbindd_privileged 0750 root root - -"
-    
+    #"d /var/lib/samba/winbindd_privileged 0750 root root - -"
     "d /srv/users/kevin 0770 root sambakevin - -"
     "d /srv/users/jane  0770 root sambajane  - -"
   ];
@@ -33,6 +32,7 @@
   services.samba = {
     enable = true;
     openFirewall = false;
+    winbindd.enable = false;  # Disable winbindd
     settings = {
       global = {
         "workgroup" = "WORKGROUP";
