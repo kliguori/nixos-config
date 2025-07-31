@@ -48,11 +48,11 @@
     options = [ "bind" ];
   };
 
-  # Samba state
-  # fileSystems."/var/lib/samba" = {
-  #   device = "/persist/var/lib/samba";
-  #   options = [ "bind" ];
-  # };
+  Samba state
+  fileSystems."/var/lib/samba" = {
+    device = "/persist/var/lib/samba";
+    options = [ "bind" ];
+  };
 
   # Admin user SSH keys
   fileSystems."/home/admin/.ssh" = {
@@ -98,7 +98,7 @@
     # Permissions for bind mounted directories (also creates directories if they don't exist)
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
     "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
-    # "d /persist/var/lib/samba 0700 root root - -" # Samba
+    "d /persist/var/lib/samba 0755 root root - -" # Samba
     "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
     "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
     
