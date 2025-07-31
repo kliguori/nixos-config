@@ -48,7 +48,7 @@
     options = [ "bind" ];
   };
 
-  Samba state
+  # Samba state
   fileSystems."/var/lib/samba" = {
     device = "/persist/var/lib/samba";
     options = [ "bind" ];
