@@ -87,6 +87,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/srv/users/shared" = {
+    device = "data-pool/users/shared";
+    fsType = "zfs";
+  };
+
   fileSystems."/srv/photos" = {
     device = "data-pool/photos";
     fsType = "zfs";

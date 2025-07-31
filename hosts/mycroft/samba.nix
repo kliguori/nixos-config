@@ -2,31 +2,33 @@
 
 {
   users.groups.sambakevin = { };
+  users.groups.sambajane = { };
+  users.groups.sambashared = { };
+  
   users.users.kevin = {
     isNormalUser = true;
     description = "Samba user Kevin";
     group = "sambakevin";                   # primary group
-    extraGroups = [ ];                      # no extra groups
+    extraGroups = [ "sambashared" ];        # can access shared directories
     createHome = false;                     # no home directory
     shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
     hashedPassword = "!" ;                  # disable system login password
   };
 
-  users.groups.sambajane = { };
   users.users.jane = {
     isNormalUser = true;
     description = "Samba user Jane";
     group = "sambajane";                    # primary group
-    extraGroups = [ ];                      # no extra groups
+    extraGroups = [ "sambashared" ];        # can access shared directories
     createHome = false;                     # no home directory
     shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
     hashedPassword = "!" ;                  # disable system login password
   };
 
   systemd.tmpfiles.rules = [
-    #"d /var/lib/samba/winbindd_privileged 0750 root root - -"
     "d /srv/users/kevin 0770 root sambakevin - -"
     "d /srv/users/jane  0770 root sambajane  - -"
+    "d /srv/users/shared  0770 root sambashared  - -"
   ];
 
   services.samba = {
@@ -52,8 +54,7 @@
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "kevin";
-        "force group" = "sambakevin";
+        "valid user" = "@sambakevin";
       };
       
       "jane" = {
@@ -63,8 +64,7 @@
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "jane";
-        "force group" = "sambajane";
+        "valid user" = "@sambajane";
       };
     };
   };
