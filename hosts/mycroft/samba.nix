@@ -15,18 +15,18 @@
     enable = true;
     openFirewall = false;  
     
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = NixOS NAS
-      netbios name = nixnas
-      security = user
-      map to guest = never
-      vfs objects = acl_xattr
-      smb encrypt = required
-      interfaces = tailscale0
-      bind interfaces only = yes
-    '';  
-    
+    services.samba.settings = {
+      "workgroup" = "WORKGROUP";
+      "server string" = "NixOS NAS";
+      "netbios name" = "nixnas";
+      "security" = "user";
+      "map to guest" = "never";
+      "vfs objects" = "acl_xattr";
+      "smb encrypt" = "required";
+      "interfaces" = "tailscale0";
+      "bind interfaces only" = "yes";
+    };
+
     shares = {
       kevin = {
         path = "/srv/users/kevin";
