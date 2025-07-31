@@ -3,6 +3,7 @@
 {
   users.groups.sambakevin = { };
   users.groups.sambajane = { };
+  users.groups.sambajack = { };
   users.groups.sambashared = { };
   
   users.users.kevin = {
@@ -20,6 +21,16 @@
     description = "Samba user Jane";
     group = "sambajane";                    # primary group
     extraGroups = [ "sambashared" ];        # can access shared directories
+    createHome = false;                     # no home directory
+    shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
+    hashedPassword = "!" ;                  # disable system login password
+  };
+
+  users.users.jack = {
+    isNormalUser = true;
+    description = "Samba user Jack";
+    group = "sambajack";                    # primary group
+    extraGroups = [ ];                      # can access shared directories
     createHome = false;                     # no home directory
     shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
     hashedPassword = "!" ;                  # disable system login password
@@ -46,32 +57,42 @@
       
       "kevin" = {
         "path" = "/srv/users/kevin";
-        "browseable" = "yes";
+        "browseable" = "no";
         "read only" = "no";
         "guest ok" = "no";
-        "create mask" = "0644";
-        "directory mask" = "0755";
+        "create mask" = "0660";
+        "directory mask" = "0770";
         "valid user" = "@sambakevin";
       };
       
       "jane" = {
         "path" = "/srv/users/jane";
-        "browseable" = "yes";
+        "browseable" = "no";
         "read only" = "no";
         "guest ok" = "no";
-        "create mask" = "0644";
-        "directory mask" = "0755";
+        "create mask" = "0660";
+        "directory mask" = "0770";
         "valid user" = "@sambajane";
       };
 
       "shared" = {
         "path" = "/srv/users/shared";
-        "browseable" = "yes";
+        "browseable" = "no";
         "read only" = "no";
         "guest ok" = "no";
-        "create mask" = "0644";
-        "directory mask" = "0755";
-        "valid user" = "@sambajane";
+        "create mask" = "0660";
+        "directory mask" = "0770";
+        "valid user" = "@sambashared";
+      };
+
+      "media" = {
+        "path" = "/srv/media";
+        "browseable" = "no";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0660";
+        "directory mask" = "0770";
+        "valid user" = "@sambajack";
       };
     };
   };
