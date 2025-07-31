@@ -13,42 +13,42 @@
 
   services.samba = {
     enable = true;
-    openFirewall = false;  
-    
+    securityType = "user";
+    openFirewall = false;
     settings = {
-      "workgroup" = "WORKGROUP";
-      "server string" = "NixOS NAS";
-      "netbios name" = "nixnas";
-      "security" = "user";
-      "map to guest" = "never";
-      "vfs objects" = "acl_xattr";
-      "smb encrypt" = "required";
-      "interfaces" = "tailscale0";
-      "bind interfaces only" = "yes";
-    };
-
-    shares = {
-      kevin = {
-        path = "/srv/users/kevin";
-        browseable = true;
-        writable = true;
-        "read only" = false;
-        "valid users" = [ "kevin" ];
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "smbnix";
+        "netbios name" = "smbnix";
+        "security" = "user";
+        #"use sendfile" = "yes";
+        #"max protocol" = "smb2";
+        # note: localhost is the ipv6 localhost ::1
+        "hosts allow" = "192.168.0. 127.0.0.1 localhost";
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      "kevin" = {
+        "path" = "/srv/users/kevin";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "kevin";
         "force group" = "sambakevin";
-        "create mask" = "0660";
-        "directory mask" = "0770";
-      };  
-    
-      #jane = {
-      #  path = "/srv/users/jane";
-      #  browseable = true;
-      #  writable = true;
-      #  "read only" = false;
-      #  "valid users" = [ "jane" ];
-      #  "force group" = "sambajane";
-      #  "create mask" = "0660";
-      #  "directory mask" = "0770";
-      #};
+      };
+    #   "jane" = {
+    #     "path" = "/srv/users/jane";
+    #     "browseable" = "yes";
+    #     "read only" = "no";
+    #     "guest ok" = "no";
+    #     "create mask" = "0644";
+    #     "directory mask" = "0755";
+    #     "force user" = "jane";
+    #     "force group" = "sambajane";
+    #   };
     };
   };
 }
