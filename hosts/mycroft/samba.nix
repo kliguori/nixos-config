@@ -30,7 +30,7 @@
     isNormalUser = true;
     description = "Samba user Jack";
     group = "sambajack";                    # primary group
-    extraGroups = [ ];                      # can access shared directories
+    extraGroups = [ ];                      # no extra groups
     createHome = false;                     # no home directory
     shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
     hashedPassword = "!" ;                  # disable system login password
