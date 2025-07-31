@@ -37,9 +37,6 @@
     winbindd.enable = false;  # Disable winbindd
     settings = {
       global = {
-        "workgroup" = "WORKGROUP";
-        "server string" = "smbnix";
-        "netbios name" = "smbnix";
         "security" = "user";
         "hosts allow" = "100.64.54. 10.54.1. 127.0.0.1 localhost";
         "hosts deny" = "0.0.0.0/0";
@@ -58,6 +55,16 @@
       };
       
       "jane" = {
+        "path" = "/srv/users/jane";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "valid user" = "@sambajane";
+      };
+
+      "shared" = {
         "path" = "/srv/users/jane";
         "browseable" = "yes";
         "read only" = "no";
