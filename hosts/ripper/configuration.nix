@@ -34,7 +34,7 @@
   # Networking
   networking = {
     hostName = "ripper";
-    hostId = "ba087eb7";
+    hostId = "7ee8e688";
     networkmanager.enable = true;
   };
 
@@ -50,50 +50,28 @@
     options = [ "bind" ];
   };
 
-  # jack user SSH keys
-  fileSystems."/home/jack/.ssh" = {
-    device = "/persist/home/jack/.ssh";
-    options = [ "bind" ];
-  };
-
-  # nixos-config
-  fileSystems."/home/jack/nixos-config" = {
-    device = "/persist/home/jack/nixos-config";
-    options = [ "bind" ];
-  };
-
   # Set directory/file permissions and create symlinks
   systemd.tmpfiles.rules = [
     # Permissions for bind mounted directories (also creates directories if they don't exist)
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
     "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
-    "d /persist/home/jack/.ssh 0700 jack users - -" # Jack user SSH keys
-    "d /persist/home/jack/nixos-config 0755 jack users - -" # nixos-config
-    
-    # Permissions for symlinked files (also creates file and parent directories if they don't exist)
-    "f /persist/home/jack/.gitconfig 0644 jack users - -" # Git configuration
-
-    # Symlink persistent files
-    "L+ /home/jack/.gitconfig - - - - /persist/home/jack/.gitconfig" # Symlink .gitconfig
   ];
 
   # Graphical settings
   services.xserver = {
-    videoDrivers = [ "nvidia" ]; # Graphics drivers
+    videoDrivers = [ 
+      "modesetting" # Intel graphics drivers
+      "nvidia"      # Nvidia graphics drivers
+    ]; 
     desktopManager.pantheon.enable = true; # Use Pantheon desktop environment
     displayManager.lightdm = {
       enable = true; # Use LightDM as display manager
       greeters.pantheon.enable = true; # Use Pantheon greeter
     };
   };
+
   hardware = {
-    graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        libglvnd
-        vulkan-loader
-      ];
-    };
+    graphics.enable = true; # Enable graphics hardware
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
@@ -101,6 +79,14 @@
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      prime = {
+        offload = {
+          enable = true;           # Enable offloading
+          enableOffloadCmd = true; # Enable offload command
+        };
+        intelBusId = "PCI:0:2:0";  # Intel GPU PCI bus ID
+        nvidiaBusId = "PCI:2:0:0"; # Nvidia GPU PCI bus ID
+      };
     };
   };
 
