@@ -59,14 +59,17 @@
 
   # Graphical settings
   services.xserver = {
+    enable = true; # Enable X server
     videoDrivers = [ 
       "modesetting" # Intel graphics drivers
       "nvidia"      # Nvidia graphics drivers
     ]; 
-    desktopManager.pantheon.enable = true; # Use Pantheon desktop environment
+    desktopManager.gnome.enable = true; # Use Pantheon desktop environment
+    displayManager.gdm.enable = true;
+    desktopManager.pantheon.enable = false; # Use Pantheon desktop environment
     displayManager.lightdm = {
-      enable = true; # Use LightDM as display manager
-      greeters.pantheon.enable = true; # Use Pantheon greeter
+      enable = false; # Use LightDM as display manager
+      greeters.pantheon.enable = false; # Use Pantheon greeter
     };
   };
 
