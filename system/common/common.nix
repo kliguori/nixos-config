@@ -90,6 +90,7 @@
 
     # Monitoring
     htop
+    btop
     fastfetch
     strace
     lsof

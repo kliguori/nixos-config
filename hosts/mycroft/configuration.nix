@@ -13,8 +13,11 @@
 
   # Boot settings
   boot = {
-    # Turn off screen after 5 minutes
-    kernelParams = [ "consoleblank=300" ];
+    
+    kernelParams = [ 
+      "consoleblank=300"           # Turn off screen after 5 minutes
+      "zfs.zfs_arc_max=4294967296" # Limit ZFS ARC size to 4GiB
+    ];
     
     # Bootloader settings
     loader = { 
