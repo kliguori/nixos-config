@@ -51,6 +51,12 @@
     options = [ "bind" ];
   };
 
+  # Jellyfin state
+  fileSystems."/var/lib/jellyfin" = {
+    device = "/persist/var/lib/jellyfin";
+    options = [ "bind" ];
+  };
+
   # Samba state
   fileSystems."/var/lib/samba" = {
     device = "/persist/var/lib/samba";
@@ -106,6 +112,7 @@
     # Permissions for bind mounted directories (also creates directories if they don't exist)
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
     "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
+    "d /persist/var/lib/jellyfin 0700 jellyfin jellyfin - -" # Jellyfin state
     "d /persist/var/lib/samba 0755 root root - -" # Samba
     "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
     "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
@@ -140,8 +147,25 @@
   };  
   
   # Services
-  services.jellyfin.enable = true;
+  services = {
+    jellyfin.enable = true;
+    vaultwarden.enable = true;
+    immich.enable = true;
+    home-assistant.enable = true;
+    grafana.enable = true;
+    prometheus.enable = true;
+    netbird.enable = true;
+    homepage-dashboard.enable = true;
+    wireguard.enable = true;
+    nfs.server.enable = true;
+  };
 
+    # systemd.services.jellyfin.preStart = ''
+    #   mkdir -p /var/lib/jellyfin
+    #   chown -R jellyfin:jellyfin /var/lib/jellyfin
+    #   chmod 0700 /var/lib/jellyfin
+    # '';
+  
   users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
 
