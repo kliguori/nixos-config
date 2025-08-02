@@ -45,17 +45,17 @@
     options = [ "bind" ];
   };
 
-  # Tailscale state
-  fileSystems."/var/lib/tailscale" = {
-    device = "/persist/var/lib/tailscale";
-    options = [ "bind" ];
-  };
+  # # Tailscale state
+  # fileSystems."/var/lib/tailscale" = {
+  #   device = "/persist/var/lib/tailscale";
+  #   options = [ "bind" ];
+  # };
 
-  # Samba state
-  fileSystems."/var/lib/samba" = {
-    device = "/persist/var/lib/samba";
-    options = [ "bind" ];
-  };
+  # # Samba state
+  # fileSystems."/var/lib/samba" = {
+  #   device = "/persist/var/lib/samba";
+  #   options = [ "bind" ];
+  # };
 
   # Admin user SSH keys
   fileSystems."/home/admin/.ssh" = {
@@ -105,8 +105,8 @@
   systemd.tmpfiles.rules = [
     # Permissions for bind mounted directories (also creates directories if they don't exist)
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
-    "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
-    "d /persist/var/lib/samba 0755 root root - -" # Samba
+    # "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
+    # "d /persist/var/lib/samba 0755 root root - -" # Samba
     "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
     "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
     
@@ -139,24 +139,9 @@
     };
   };  
 
-  # Jellyfin
-  services.jellyfin = {
-    enable = true;
-    dataDir = "/persist/var/lib/jellyfin";
-    configDir = "/persist/var/lib/jellyfin/config";
-    cacheDir = "/persist/var/cache/jellyfin";
-    logDir = "/persist/var/log/jellyfin";
-  };
-
-  # users.users.jellyfin = {
-  #   isSystemUser = true;
-  #   uid = 500;
-  #   group = "jellyfin";
-  # };
-  # users.groups.jellyfin.gid = 500;
-  
   # Services
   services = {
+    jellyfin.enable = true;
     vaultwarden.enable = true;
     immich.enable = true;
     home-assistant = {
@@ -181,12 +166,6 @@
     nfs.server.enable = true;
   };
 
-    # systemd.services.jellyfin.preStart = ''
-    #   mkdir -p /var/lib/jellyfin
-    #   chown -R jellyfin:jellyfin /var/lib/jellyfin
-    #   chmod 0700 /var/lib/jellyfin
-    # '';
-  
   users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
 
