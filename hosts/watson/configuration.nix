@@ -31,6 +31,7 @@
 
   # Symlink etc files after recreating root
   systemd.tmpfiles.rules = [
+    "d /persist/var/lib/tailscale 0700 root root - -" 
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -"
     "L+ /etc/NetworkManager/system-connections - - - - /persist/etc/NetworkManager/system-connections"
   ];
@@ -53,5 +54,13 @@
   environment.systemPackages = with pkgs; [];
 
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
+
+  # Tailscale state
+  fileSystems."/var/lib/tailscale" = {
+    device = "/persist/var/lib/tailscale";
+    options = [ "bind" ];
+  };
+
+  services.jellyfin.enable = false;
 
 }
