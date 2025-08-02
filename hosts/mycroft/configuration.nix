@@ -156,7 +156,6 @@
     prometheus.enable = true;
     netbird.enable = true;
     homepage-dashboard.enable = true;
-    wireguard.enable = true;
     nfs.server.enable = true;
   };
 
