@@ -151,7 +151,21 @@
     jellyfin.enable = true;
     vaultwarden.enable = true;
     immich.enable = true;
-    home-assistant.enable = true;
+    home-assistant = {
+      enable = true;
+      extraComponents = [
+        # Components required to complete the onboarding
+        "analytics"
+        "google_translate"
+        "met"
+        "radio_browser"
+        "shopping_list"
+        "isal"
+      ];
+      config = {
+        default_config = {};
+      };
+    };
     grafana.enable = true;
     prometheus.enable = true;
     netbird.enable = true;
