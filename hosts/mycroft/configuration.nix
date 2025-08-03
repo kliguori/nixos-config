@@ -129,7 +129,7 @@ in {
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 ]; # Open ports for web services
+      allowedTCPPorts = [ 22 8123 ]; # Open ports for web services
       allowedUDPPorts = [  ]; # DNS
       logRefusedConnections = true; # Log refused connections
     };
@@ -139,9 +139,9 @@ in {
       internalIPs = [ "192.168.122.0/24" ];
       forwardPorts = [
         {
+          sourcePort = 8123;
           destination = "192.168.122.10:8123";
           proto = "tcp";
-          sourcePort = 8123;
         }
       ];
     };
