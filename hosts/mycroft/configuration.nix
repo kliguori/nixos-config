@@ -132,20 +132,25 @@ in {
       allowedTCPPorts = [ 22 8123 ]; # Open ports for web services
       allowedUDPPorts = [  ]; # DNS
       logRefusedConnections = true; # Log refused connections
+      extraCommands = ''
+        iptables -t nat -A PREROUTING -i tailscale0 -p tcp --dport 8123 -j DNAT --to-destination 192.168.122.X:8123
+        iptables -A FORWARD -i tailscale0 -o virbr0 -p tcp --dport 8123 -j ACCEPT
+        iptables -A FORWARD -i virbr0 -o tailscale0 -p tcp --sport 8123 -j ACCEPT
+      '';
     };
-    nat = {
-      enable = true;
-      internalInterfaces = [ "lo" "tailscale0" ]; 
-      externalInterface = "virbr0"; 
-      internalIPs = [ "192.168.122.0/24" ];
-      forwardPorts = [
-        {
-          sourcePort = 8123;
-          destination = "192.168.122.10:8123";
-          proto = "tcp";
-        }
-      ];
-    };
+    # nat = {
+    #   enable = true;
+    #   internalInterfaces = [ "lo" "tailscale0" ]; 
+    #   externalInterface = "virbr0"; 
+    #   internalIPs = [ "192.168.122.0/24" ];
+    #   forwardPorts = [
+    #     {
+    #       sourcePort = 8123;
+    #       destination = "192.168.122.10:8123";
+    #       proto = "tcp";
+    #     }
+    #   ];
+    # };
   };
 
   # Bluetooth settings
