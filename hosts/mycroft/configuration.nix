@@ -133,6 +133,19 @@ in {
       allowedUDPPorts = [  ]; # DNS
       logRefusedConnections = true; # Log refused connections
     };
+    nat = {
+      enable = true;
+      externalInterface = "tailscale0"; # or "eth0" if not using Tailscale
+      internalIPs = [ "192.168.122.0/24" ];
+      forwardPorts = [
+        {
+          destination = "192.168.122.10";
+          proto = "tcp";
+          sourcePort = 8123;
+          targetPort = 8123;
+        }
+      ];
+    };
   };
 
   # Bluetooth settings
