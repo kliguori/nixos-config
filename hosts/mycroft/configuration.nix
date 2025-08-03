@@ -110,8 +110,6 @@
   systemd.tmpfiles.rules = [
     # Permissions for bind mounted directories (also creates directories if they don't exist)
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
-    # "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
-    # "d /persist/var/lib/samba 0755 root root - -" # Samba
     "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
     "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
     
@@ -180,6 +178,34 @@
         };
     };
   };
+
+systemd.services.libvirt-define-default-net = {
+  description = "Define libvirt default network at boot";
+  wantedBy = [ "libvirtd.service" ];
+  before = [ "libvirtd.service" ];
+  serviceConfig = {
+    Type = "oneshot";
+    ExecStart = pkgs.writeShellScript "libvirt-define-network" ''
+      mkdir -p /etc/libvirt/qemu/networks
+      cat > /etc/libvirt/qemu/networks/default.xml <<"EOF"
+        <network>
+          <name>default</name>
+          <bridge name='virbr0' stp='on' delay='0'/>
+          <forward mode='nat'/>
+          <ip address='192.168.122.1' netmask='255.255.255.0'>
+            <dhcp>
+              <range start='192.168.122.2' end='192.168.122.254'/>
+            </dhcp>
+          </ip>
+        </network>
+        EOF
+      virsh net-define /etc/libvirt/qemu/networks/default.xml
+      virsh net-autostart default
+      virsh net-start default
+    '';
+  };
+};
+
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
