@@ -133,17 +133,20 @@ in {
       allowedUDPPorts = [  ]; # DNS
       logRefusedConnections = true; # Log refused connections
     };
-  };
-
-  services.caddy = {
-    enable = true;
-    virtualHosts."mycroft.tail462a33.ts.net" = {
-      extraConfig = ''
-        reverse_proxy 192.168.122.10:8123
-      '';
+    nat = {
+      enable = true;
+      internalInterfaces = [ "lo" "tailscale0" ]; 
+      externalInterface = "virbr0"; 
+      internalIPs = [ "192.168.122.0/24" ];
+      forwardPorts = [
+        {
+          sourcePort = 8123;
+          destination = "192.168.122.10:8123";
+          proto = "tcp";
+        }
+      ];
     };
-};
-
+  };
 
   # Bluetooth settings
   services.blueman.enable = false;
