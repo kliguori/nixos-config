@@ -136,7 +136,7 @@ in {
     nat = {
       enable = true;
       internalInterfaces = [ "virbr0" ]; # Use the libvirt bridge for NAT
-      externalInterface = [ "lo" "tailscale0" ]; # Use the all external interfaces
+      externalInterface = "lo"; # Use the all external interfaces
       internalIPs = [ "192.168.122.0/24" ];
       forwardPorts = [
         {
