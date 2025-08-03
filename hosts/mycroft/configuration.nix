@@ -140,7 +140,7 @@ in {
 
   # Host specific system packages
   environment.systemPackages = with pkgs; [
-    libvirtd
+    libvirt
     virt-manager
     qemu
   ];
