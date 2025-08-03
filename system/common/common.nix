@@ -46,15 +46,6 @@
   # Basic programs
   programs.zsh.enable = true;     # Enable zsh shell
 
-  # Enable virtualization
-  virtualisation = {
-    docker.enable = true;              # Enable docker
-    libvirtd = {                       # Enable QEMU and KVM
-        enable = true;
-        qemu.package = pkgs.qemu_kvm;
-    };
-  };
-
   # Basic (CLI) packages
   environment.systemPackages = with pkgs; [
     # Shell utilities

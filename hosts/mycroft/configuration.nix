@@ -168,6 +168,19 @@
     nfs.server.enable = false;
   };
 
+    # Enable virtualization
+  virtualisation = {
+    docker.enable = true;              # Enable docker
+    libvirtd = {                       # Enable QEMU and KVM
+        enable = true;
+        qemu = {
+          package = pkgs.qemu_kvm;
+          ovmf.enable = true; # Enable OVMF for UEFI support
+          runAsRoot = true; # Allow running as root
+        };
+    };
+  };
+
   users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
 
