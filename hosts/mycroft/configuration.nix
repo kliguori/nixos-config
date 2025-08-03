@@ -183,16 +183,16 @@ in {
  
   systemd.services.libvirt-define-default-net = {
     description = "Define default libvirt NAT network at boot";
-    wantedBy = [ "libvirtd.service" ];
-    before = [ "libvirtd.service" ];
+    wantedBy = [ "multi-user.target" ];
+    after = [ "libvirtd.service" ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = pkgs.writeShellScript "libvirt-define-network" ''
         mkdir -p /etc/libvirt/qemu/networks
         echo '${defaultNetXml}' > /etc/libvirt/qemu/networks/default.xml
-        virsh net-define /etc/libvirt/qemu/networks/default.xml
-        virsh net-autostart default
-        virsh net-start default
+        ${pkgs.libvirt}/bin/virsh net-define /etc/libvirt/qemu/networks/default.xml || true 
+        ${pkgs.libvirt}/bin/virsh net-autostart default || true
+        ${pkgs.libvirt}/bin/virsh net-start default || true
       '';
     };
   };
