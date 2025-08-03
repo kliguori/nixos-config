@@ -179,33 +179,26 @@
     };
   };
 
-systemd.services.libvirt-define-default-net = {
-  description = "Define libvirt default network at boot";
-  wantedBy = [ "libvirtd.service" ];
-  before = [ "libvirtd.service" ];
-  serviceConfig = {
-    Type = "oneshot";
-    ExecStart = pkgs.writeShellScript "libvirt-define-network" ''
-      mkdir -p /etc/libvirt/qemu/networks
-      cat > /etc/libvirt/qemu/networks/default.xml <<"EOF"
-        <network>
-          <name>default</name>
-          <bridge name='virbr0' stp='on' delay='0'/>
-          <forward mode='nat'/>
-          <ip address='192.168.122.1' netmask='255.255.255.0'>
-            <dhcp>
-              <range start='192.168.122.2' end='192.168.122.254'/>
-            </dhcp>
-          </ip>
-        </network>
-        EOF
-      virsh net-define /etc/libvirt/qemu/networks/default.xml
-      virsh net-autostart default
-      virsh net-start default
-    '';
-  };
-};
+let
+  defaultNetXml = builtins.readFile ./default.xml;
+in {
+  systemd.services.libvirt-define-default-net = {
+    description = "Define default libvirt NAT network at boot";
+    wantedBy = [ "libvirtd.service" ];
+    before = [ "libvirtd.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "libvirt-define-network" ''
+        mkdir -p /etc/libvirt/qemu/networks
+        echo '${defaultNetXml}' > /etc/libvirt/qemu/networks/default.xml
 
+        virsh net-define /etc/libvirt/qemu/networks/default.xml
+        virsh net-autostart default
+        virsh net-start default
+      '';
+    };
+  };
+}
 
   users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
