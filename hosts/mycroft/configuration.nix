@@ -139,7 +139,10 @@
   services.blueman.enable = false;
 
   # Host specific system packages
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    qemu
+  ];
 
   # Enable SSH for remote management
   services.openssh = {
