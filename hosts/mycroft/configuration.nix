@@ -143,21 +143,9 @@
   services = {
     jellyfin.enable = true;
     vaultwarden.enable = true;
-    immich.enable = true;
-    home-assistant = {
+    immich = {
       enable = true;
-      extraComponents = [
-        # Components required to complete the onboarding
-        "analytics"
-        "google_translate"
-        "met"
-        "radio_browser"
-        "shopping_list"
-        "isal"
-      ];
-      config = {
-        default_config = {};
-      };
+      port = 2283;
     };
     grafana.enable = true;
     prometheus.enable = true;
