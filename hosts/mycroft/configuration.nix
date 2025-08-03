@@ -133,7 +133,7 @@ in {
       allowedUDPPorts = [  ]; # DNS
       logRefusedConnections = true; # Log refused connections
       extraCommands = ''
-        iptables -t nat -A PREROUTING -i tailscale0 -p tcp --dport 8123 -j DNAT --to-destination 192.168.122.X:8123
+        iptables -t nat -A PREROUTING -i tailscale0 -p tcp --dport 8123 -j DNAT --to-destination 192.168.122.10:8123
         iptables -A FORWARD -i tailscale0 -o virbr0 -p tcp --dport 8123 -j ACCEPT
         iptables -A FORWARD -i virbr0 -o tailscale0 -p tcp --sport 8123 -j ACCEPT
       '';
