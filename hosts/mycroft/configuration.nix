@@ -122,6 +122,12 @@
     hostName = "mycroft";
     hostId = "ba087eb7";
     networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 22 ]; # Open ports for web services
+      allowedUDPPorts = [  ]; # DNS
+      logRefusedConnections = true; # Log refused connections
+    };
   };
 
   # Bluetooth settings
@@ -142,16 +148,16 @@
   # Services
   services = {
     jellyfin.enable = true;
-    vaultwarden.enable = true;
+    vaultwarden.enable = false;
     immich = {
-      enable = true;
+      enable = false;
       port = 2283;
     };
-    grafana.enable = true;
-    prometheus.enable = true;
-    netbird.enable = true;
-    homepage-dashboard.enable = true;
-    nfs.server.enable = true;
+    grafana.enable = false;
+    prometheus.enable = false;
+    netbird.enable = false;
+    homepage-dashboard.enable = false;
+    nfs.server.enable = false;
   };
 
   users.mutableUsers = false;
