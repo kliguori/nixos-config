@@ -139,10 +139,9 @@ in {
       internalIPs = [ "192.168.122.0/24" ];
       forwardPorts = [
         {
-          destination = "192.168.122.10";
+          destination = "192.168.122.10:8123";
           proto = "tcp";
           sourcePort = 8123;
-          targetPort = 8123;
         }
       ];
     };
