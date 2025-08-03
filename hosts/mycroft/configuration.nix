@@ -100,6 +100,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/var/lib/libvirt/images/home-assistant" = {
+    device = "data-pool/virtual-machines/home-assistant";
+    fsType = "zfs";
+  };
+
 
   # Set directory/file permissions and create symlinks
   systemd.tmpfiles.rules = [
