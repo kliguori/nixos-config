@@ -11,7 +11,6 @@ pkgs.mkShell {
       seaborn
       scipy
       scikit-learn
-      torch-bin
       jupyterlab
       ipykernel
       sympy
