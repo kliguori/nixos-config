@@ -1,74 +1,152 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.sanoid = {
+  # Enable zrepl
+  services.zrepl = {
     enable = true;
-    datasets = {
-      # Base policy for the entire pool
-      "data-pool" = {
-        useTemplate = [ "base" ];
-        recursive = true;  # This applies base policy to all datasets
-      };
-      
-      # Override for virtual-machines (adds hourly)
-      "data-pool/virtual-machines" = {
-        useTemplate = [ "withHourly" ];
-        recursive = true;  # Applies to all VMs under this
-      };
-      
-      # Override for all user datasets (adds hourly)
-      "data-pool/users" = {
-        useTemplate = [ "withHourly" ];
-        recursive = true;  # Applies to kevin, jane, shared, etc.
-      };
-    };
     
-    templates = {
-      # Base template: daily, weekly, monthly only
-      base = {
-        frequently = 0;
-        hourly = 0;         # No hourly snapshots
-        daily = 7;          # 7 days
-        weekly = 4;         # 4 weeks  
-        monthly = 12;       # 12 months
-        yearly = 0;
-        autosnap = true;
-        autoprune = true;
-      };
-      
-      # Extended template: adds hourly snapshots
-      withHourly = {
-        frequently = 0;
-        hourly = 24;        # 24 hours (1 day)
-        daily = 7;          # 7 days
-        weekly = 4;         # 4 weeks
-        monthly = 12;       # 12 months  
-        yearly = 0;
-        autosnap = true;
-        autoprune = true;
-      };
-    };
-  };
-
-  services.syncoid = {
-    enable = true;
-  
-    commands = {
-      "data-pool-backup" = {
-        source = "data-pool";
-        target = "backup-pool";
-
-        recursive = true;
-
-        extraArgs = [ 
-          "--compress=zstd"           # Compress replication stream
-          "--no-privilege-elevation"  # Don't use sudo (already root)
-          "--no-sync-snap"            # Don't create sync snapshots (sanoid handles this)
+    settings = {
+      # Global settings
+      global = {
+        logging = [
+          {
+            type = "stdout";
+            level = "info";
+            format = "human";
+          }
+          {
+            type = "syslog";
+            level = "warn";
+            format = "human";
+          }
         ];
       };
+      
+      # Jobs configuration
+      jobs = [
+        {
+          name = "local_backup";
+          type = "push";
+          
+          # What to replicate
+          filesystems = {
+            "data-pool/media<" = true;           # < means include children
+            "data-pool/photos<" = true;
+            "data-pool/users<" = true;
+            "data-pool/virtual-machines<" = true;
+          };
+          
+          # Where to replicate to
+          connect = {
+            type = "local";
+          };
+          
+          # Target configuration
+          root_fs = "backup-pool";
+          
+          # Snapshot settings
+          snapshotting = {
+            type = "periodic";
+            prefix = "zrepl_";
+            interval = "1h";    # Create snapshots every hour
+            
+            # Snapshot retention on source
+            hooks = [
+              {
+                type = "command";
+                path = "/bin/true";  # Placeholder - could add custom hooks
+              }
+            ];
+          };
+          
+          # Replication schedule
+          replication = {
+            # Replication interval
+            interval = "10m";   # Check for new snapshots every 10 minutes
+            
+            # Compression during replication
+            protection = {
+              initial = "guarantee_resumability";
+              incremental = "guarantee_resumability";
+            };
+          };
+          
+          # Retention policy on target
+          pruning = {
+            keep_sender = [
+              {
+                type = "not_replicated";
+              }
+              {
+                type = "last_n";
+                count = 10;
+              }
+            ];
+            keep_receiver = [
+              {
+                type = "grid";
+                grid = "1x1h(keep=all) | 24x1h | 7x1d | 4x7d | 12x30d";
+              }
+            ];
+          };
+        }
+        
+        # Alternative: Manual snapshot job (if you prefer sanoid for snapshots)
+        {
+          name = "manual_backup";
+          type = "push";
+          
+          filesystems = {
+            "data-pool/media<" = true;
+            "data-pool/users<" = true; 
+            "data-pool/virtual-machines<" = true;
+          };
+          
+          connect = {
+            type = "local";
+          };
+          
+          root_fs = "backup-pool";
+          
+          # Use existing snapshots (from sanoid)
+          snapshotting = {
+            type = "manual";
+          };
+          
+          replication = {
+            interval = "30m";   # Check every 30 minutes
+          };
+          
+          pruning = {
+            keep_sender = [
+              {
+                type = "not_replicated";
+              }
+            ];
+            keep_receiver = [
+              {
+                type = "regex";
+                regex = "^(autosnap_.*|zrepl_.*)";
+              }
+              {
+                type = "last_n"; 
+                count = 50;     # Keep last 50 snapshots
+              }
+            ];
+          };
+        }
+      ];
     };
-    
-    # Run twice daily: 12:30 AM and 12:30 PM
-    interval = "*-*-* 13:00:00";
   };
+  
+  # Make sure ZFS is available
+  boot.supportedFilesystems = [ "zfs" ];
+  
+  # Optional: Enable prometheus metrics for monitoring
+  services.zrepl.settings.global.monitoring = [
+    {
+      type = "prometheus";
+      listen = ":9811";
+    }
+  ];
 }
