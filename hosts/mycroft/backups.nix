@@ -49,4 +49,26 @@
       };
     };
   };
+
+  services.syncoid = {
+    enable = true;
+  
+    commands = {
+      "data-pool-backup" = {
+        source = "data-pool";
+        target = "backup-pool";
+
+        recursive = true;
+
+        extraArgs = [ 
+          "--compress=lz4"           # Compress replication stream
+          "--no-privilege-elevation" # Don't use sudo (already root)
+          "--no-sync-snap"          # Don't create sync snapshots (sanoid handles this)
+        ];
+      };
+    };
+    
+    # Run twice daily: 12:30 AM and 12:30 PM
+    interval = "*-*-* 00:30:00,12:30:00";
+  };
 }
