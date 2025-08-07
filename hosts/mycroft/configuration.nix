@@ -8,6 +8,7 @@ in {
     ./users.nix                                             # Include users
     ./samba.nix                                             # Include Samba configuration
     ./networking.nix                                        # Include networking configuration
+    ./backups.nix                                           # Include backup configuration
     ../../system/common/common.nix                          # Include common settings/services/programs
   ];
 
