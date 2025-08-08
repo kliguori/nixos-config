@@ -9,6 +9,7 @@ in {
     ./samba.nix                                             # Include Samba configuration
     ./networking.nix                                        # Include networking configuration
     ./monitoring.nix                                        # Include monitoring configuration
+    ./homepage.nix                                         # Include homepage dashboard configuration
     ../../system/common/common.nix                          # Include common settings/services/programs
   ];
 
