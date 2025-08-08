@@ -44,10 +44,7 @@ in {
     initrd.luks.devices."crypt-data".device = "/dev/disk/by-label/luks-storage-drive";
   };
 
-  services.zfs = {
-    zed.enable = true;       # Enable ZFS Event Daemon (ZED) for notifications
-    autoScrub.enable = true; # Enable automatic scrubbing of ZFS pools
-  };
+  services.zfs.autoScrub.enable = true; # Enable automatic scrubbing of ZFS pools
 
   # Bind-mount persistant directories
   fileSystems."/etc/NetworkManager/system-connections" = {
@@ -157,8 +154,6 @@ in {
       enable = false;
       port = 2283;
     };
-    grafana.enable = false;
-    prometheus.enable = false;
     netbird.enable = false;
     homepage-dashboard.enable = false;
     nfs.server.enable = false;
