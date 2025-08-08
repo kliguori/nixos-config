@@ -155,7 +155,6 @@ in {
       port = 2283;
     };
     netbird.enable = false;
-    homepage-dashboard.enable = false;
     nfs.server.enable = false;
   };
 
