@@ -8,6 +8,7 @@ in {
     ./users.nix                                             # Include users
     ./samba.nix                                             # Include Samba configuration
     ./networking.nix                                        # Include networking configuration
+    ./monitoring.nix                                        # Include monitoring configuration
     ../../system/common/common.nix                          # Include common settings/services/programs
   ];
 
@@ -40,6 +41,11 @@ in {
       zfs rollback -r rpool/root@blank
     '';
     initrd.luks.devices."crypt-data".device = "/dev/disk/by-label/luks-storage-drive";
+  };
+
+  services.zfs = {
+    zed.enable = true;       # Enable ZFS Event Daemon (ZED) for notifications
+    autoScrub.enable = true; # Enable automatic scrubbing of ZFS pools
   };
 
   # Bind-mount persistant directories

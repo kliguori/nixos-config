@@ -40,7 +40,7 @@ in {
     
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 homeAssistant.port ];
+      allowedTCPPorts = [ 22 3000 9090 homeAssistant.port ];
       allowedUDPPorts = [  ];
       logRefusedConnections = true; # Log refused connections
       extraCommands = forwardRules.add; # Commands to run when firewall starts
