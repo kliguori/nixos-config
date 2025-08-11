@@ -33,7 +33,6 @@
       };
     '';
 
-    # Declarative config (Nix writes YAML into /etc/homepage-dashboard)
     settings = {
       title = "Mycroft Dashboard";
       theme = "dark";
@@ -104,7 +103,7 @@
                 widget = {
                   type = "glances";
                   url = "http://localhost:${port}";
-                  metric = "network:enp2s0";
+                  metric = "network:enp57s0u1u4u3";
                   chart = false;
                   version = 4;
                 };

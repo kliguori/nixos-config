@@ -10,6 +10,7 @@ in {
     ./networking.nix                                        # Include networking configuration
     ./monitoring.nix                                        # Include monitoring configuration
     ./homepage.nix                                         # Include homepage dashboard configuration
+    ./containers.nix                                       # Include container configuration
     ../../system/common/common.nix                          # Include common settings/services/programs
   ];
 
@@ -119,6 +120,12 @@ in {
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
     "d /persist/home/admin/.ssh 0700 admin users - -" # Admin user SSH keys
     "d /persist/home/admin/nixos-config 0755 admin users - -" # nixos-config
+
+    # Container stuff
+    "d /persist/containers 0755 root root -"
+    "d /persist/containers/storage 0755 root root -"
+    "d /persist/containers/runroot 0755 root root -"
+    "d /persist/containers/uptime-kuma 0755 root root -"
     
     # Permissions for symlinked files (also creates file and parent directories if they don't exist)
     "f /persist/home/admin/.gitconfig 0644 admin users - -" # Git configuration
