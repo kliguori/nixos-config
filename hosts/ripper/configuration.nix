@@ -31,10 +31,12 @@
     '';
   };
 
+  services.zfs.autoScrub.enable = true; # Enable automatic scrubbing of ZFS pools
+
   # Networking
   networking = {
     hostName = "ripper";
-    hostId = "7ee8e688";
+    hostId = "1dd676d3"; # head -c4 /dev/urandom | od -A none -t x4
     networkmanager.enable = true;
   };
 
@@ -64,13 +66,8 @@
       "modesetting" # Intel graphics drivers
       "nvidia"      # Nvidia graphics drivers
     ]; 
-    desktopManager.gnome.enable = true; # Use Pantheon desktop environment
+    desktopManager.gnome.enable = true; 
     displayManager.gdm.enable = true;
-    desktopManager.pantheon.enable = false; # Use Pantheon desktop environment
-    displayManager.lightdm = {
-      enable = false; # Use LightDM as display manager
-      greeters.pantheon.enable = false; # Use Pantheon greeter
-    };
   };
 
   hardware = {
@@ -104,8 +101,19 @@
     kitty
     ghostty
     mpv
+    libvirt
     virt-manager
+    qemu
   ];
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      ovmf.enable = true; # Enable OVMF for UEFI support
+      runAsRoot = true; # Allow running as root
+    };
+  };
 
   users.users.jack = {
     isNormalUser = true;
