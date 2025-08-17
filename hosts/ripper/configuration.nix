@@ -73,6 +73,9 @@
     # Permissions for bind mounted directories (also creates directories if they don't exist)
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
     "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
+    "d /home/jack/media 0700 jack users - -"
+    "d /home/jack/media/movies 0700 jack users - -"
+    "d /home/jack/media/tv 0700 jack users - -"
   ];
 
   # Graphical settings
