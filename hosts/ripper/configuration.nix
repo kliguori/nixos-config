@@ -56,19 +56,16 @@
   fileSystems."/home/jack/media" = {
     device = "rpool/media";
     fsType = "zfs";
-    options = [ "bind" ];
   };
 
   fileSystems."/home/jack/media/movies" = {
     device = "rpool/media/movies";
     fsType = "zfs";
-    options = [ "bind" ];
   };
 
   fileSystems."/home/jack/media/tv" = {
     device = "rpool/media/tv";
     fsType = "zfs";
-    options = [ "bind" ];
   };
 
   # Set directory/file permissions and create symlinks
@@ -76,9 +73,6 @@
     # Permissions for bind mounted directories (also creates directories if they don't exist)
     "d /persist/etc/NetworkManager/system-connections 0700 root root - -" # NetworkManager connections
     "d /persist/var/lib/tailscale 0700 root root - -" # Tailscale state
-    "d /home/jack/media 0770 jack users - -"
-    "d /home/jack/media/movies 0770 jack users - -"
-    "d /home/jack/media/tv 0770 jack users - -"
   ];
 
   # Graphical settings
