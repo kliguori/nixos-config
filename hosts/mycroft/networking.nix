@@ -35,7 +35,7 @@ let
 in {
   networking = {
     hostName = "mycroft";
-    hostId = "ba087eb7";
+    hostId = "ba087eb7"; # head -c4 /dev/urandom | od -A none -t x4
     networkmanager.enable = true;
     
     firewall = {

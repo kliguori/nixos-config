@@ -21,13 +21,15 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = [ "zfs" ];
-    zfs.forceImportRoot = true;
-    # rollback root to blank snapshot
+    zfs.extraPools = [ "rpool" ];
+    # rollback root to blank snapshot (note the lib.mkAfter means this command appends, not replaces others)
     initrd.postDeviceCommands = lib.mkAfter ''
-      zpool import -Nf zpool
-      zfs rollback -r zpool/local/root@blank
+      zpool import -N rpool
+      zfs rollback -r rpool/root@blank
     '';
   };
+
+  services.zfs.autoScrub.enable = true; # Enable automatic scrubbing of ZFS pools
 
   # Symlink etc files after recreating root
   systemd.tmpfiles.rules = [
@@ -39,7 +41,7 @@
   # Networking
   networking = {
     hostName = "watson";
-    hostId = "36306665";
+    hostId = "36306665"; # head -c4 /dev/urandom | od -A none -t x4
     networkmanager.enable = true;
   };
 
