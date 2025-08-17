@@ -52,6 +52,12 @@
     options = [ "bind" ];
   };
 
+  # MakeMKV configuration
+  fileSystems."/home/jack/.MakeMKV" = {
+    device = "/persist/home/jack/.MakeMKV";
+    options = [ "bind" ];
+  };
+
   # media/{movies,tv} binding
   fileSystems."/home/jack/media" = {
     device = "rpool/media";
