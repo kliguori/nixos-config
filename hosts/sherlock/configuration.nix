@@ -10,7 +10,7 @@
     ./systemd.nix          # Include systemd configuration 
     ./networking.nix       # Include networking configuration
     ./services.nix         # Include services configuration
-    ./virtualization.nix   # Include virtualization configuration
+    ./virtualisation.nix   # Include virtualisation configuration
   ];
 
   # DO NOT CHANGE
