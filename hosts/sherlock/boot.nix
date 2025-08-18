@@ -25,7 +25,6 @@
 
     zfs.extraPools = [ 
       "rpool"      # Main ZFS root pool 
-      "data-pool"  # Additional storage ZFS pool
     ];
 
     initrd = {
