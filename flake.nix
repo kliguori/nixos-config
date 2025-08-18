@@ -44,15 +44,15 @@
           system = x86;                         
           modules = [
             ./hosts/sherlock/configuration.nix
-            # home-manager.nixosModules.home-manager
-            # {
-            #   home-manager = {
-            #     useUserPackages = true;
-            #     useGlobalPkgs = true;
-            #     backupFileExtension = "backup";
-            #     users.kevin = import ./hosts/sherlock/home.nix;
-            #   };
-            # }
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useUserPackages = true;
+                useGlobalPkgs = true;
+                backupFileExtension = "backup";
+                users.kevin = import ./hosts/sherlock/home.nix;
+              };
+            }
           ];
         };
 

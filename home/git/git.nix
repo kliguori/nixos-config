@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-    userName = "MinimumAction";
+    userName = "kliguori";
     userEmail = "liguori.km@gmail.com";
     aliases = {};
     extraConfig = {

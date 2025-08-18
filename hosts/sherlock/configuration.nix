@@ -11,6 +11,7 @@
     ./networking.nix       # Include networking configuration
     ./services.nix         # Include services configuration
     ./virtualisation.nix   # Include virtualisation configuration
+    ./dracula.nix          # Include Dracula theme configuration
   ];
 
   # DO NOT CHANGE
