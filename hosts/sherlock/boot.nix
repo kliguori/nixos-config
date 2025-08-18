@@ -41,7 +41,7 @@
       
       kernelModules = [ ];
       
-      luks.devices."crypt-data".device = "/dev/disk/by-label/luks-storage-drive";
+      # luks.devices."crypt-data".device = "/dev/disk/by-label/luks-storage-drive";
       
       # rollback to blank root
       postDeviceCommands = lib.mkAfter ''
