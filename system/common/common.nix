@@ -10,7 +10,6 @@
   # Basic settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];   # Enable flakes
   nixpkgs.config.allowUnfree = true;                                 # Allow unfree software
-  networking.firewall.enable = true;                                 # Turn on firewall
   nix.gc = {                                                         # Garbage collection
     automatic = true;
     dates = "weekly";

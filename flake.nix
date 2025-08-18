@@ -40,6 +40,21 @@
         };
         
         # Sherlock: Desktop (AMD Ryzen 9 & Nvidia RTX2080Ti)
+        sherlock = nixpkgs.lib.nixosSystem {       
+          system = x86;                         
+          modules = [
+            ./hosts/sherlock/configuration.nix
+            # home-manager.nixosModules.home-manager
+            # {
+            #   home-manager = {
+            #     useUserPackages = true;
+            #     useGlobalPkgs = true;
+            #     backupFileExtension = "backup";
+            #     users.kevin = import ./hosts/sherlock/home.nix;
+            #   };
+            # }
+          ];
+        };
 
         # Watson: Thinkpad T14 (AMD)
         watson = nixpkgs.lib.nixosSystem {       
