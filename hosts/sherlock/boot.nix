@@ -23,9 +23,14 @@
       "zfs"   # Support ZFS filesystems
     ];
 
-    zfs.extraPools = [ 
-      "rpool"      # Main ZFS root pool 
-    ];
+    zfs = {
+      requestEncryptionCredentials = true;
+      extraPools = [ 
+        "rpool"      # root pool 
+        "dpool"      # data pool
+        "bpool"      # backup pool (local)
+      ];
+    };
 
     initrd = {
       

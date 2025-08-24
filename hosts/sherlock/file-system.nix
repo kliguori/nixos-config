@@ -46,4 +46,23 @@
     device = "/persist/home/kevin/.ssh";
     options = [ "bind" ];
   };
+
+  # Persist virtual machines
+  fileSystems."/vmachines" = { 
+    device = "dpool/crypt/vmachines";
+    fsType = "zfs";
+  };
+
+  # Persist Ubuntu dev machine
+  fileSystems."/vmachines/ubuntu-dev" = { 
+    device = "dpool/crypt/vmachines/ubuntu-dev";
+    fsType = "zfs";
+  };
+
+  # Persist the ripper
+  fileSystems."/vmachines/the-ripper" = { 
+    device = "dpool/crypt/vmachines/the-ripper";
+    fsType = "zfs";
+  };
+
 }
