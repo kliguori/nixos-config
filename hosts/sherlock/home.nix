@@ -16,6 +16,7 @@
       black                                   # Python Formatter
       ruff                                    # Python Linter
       pyright                                 # Python language server
+      qbittorrent
     ];
   };
   imports = [
