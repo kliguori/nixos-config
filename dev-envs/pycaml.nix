@@ -6,7 +6,7 @@ pkgs.mkShell {
   packages = with pkgs; [
     # --- Python env ---
     (python311.withPackages (ps: with ps; [
-      jax
+      # jax
       numpy
       pandas
       matplotlib
