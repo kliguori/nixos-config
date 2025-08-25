@@ -22,11 +22,11 @@ in {
       ];
 
       workspace = [
-        "1,monitor:HDMI-A-2"
+        "1,monitor:HDMI-A-2,default:true"
         "2,monitor:HDMI-A-2"
         "3,monitor:HDMI-A-2"
         "4,monitor:HDMI-A-2"
-        "5,monitor:HDMI-A-2"
+        "5,monitor:HDMI-A-1,default:true"
         "6,monitor:HDMI-A-1"
         "7,monitor:HDMI-A-1"
         "8,monitor:HDMI-A-1"
