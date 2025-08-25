@@ -5,7 +5,8 @@
     # Set permissions in /persist for directories that are bind-mounted (also creates directories if they don't exist)
     tmpfiles.rules = [
       "d /persist/etc/NetworkManager/system-connections 0700 root root - -"   # NetworkManager connections
-      "z /vmachines 0775 root kvm - -"                                        # Virtual machine images
+      "d /vmachines/ubuntu-dev 0775 root kvm - -"                             # ubuntu-dev virtual machine image
+      "d /vmachines/the-ripper 0775 root kvm - -"                             # the-ripper virtual machine image
       "d /persist/var/lib/tailscale 0700 root root - -"                       # Tailscale state
       "d /persist/var/lib/libvirt 0755 root root - -"                         # Libvirt state
       "d /persist/home/kevin/.ssh 0700 kevin users - -"                       # SSH keys
