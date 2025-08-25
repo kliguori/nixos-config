@@ -49,7 +49,16 @@
   };
 
   # System programs
-  programs.zsh.enable = true;   # Enable zsh shell
+  programs = {
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      xwayland.enable = true;
+    };
+    zsh.enable = true;   # Enable zsh shell
+    uwsm.enable = true;
+    thunar.enable = true;
+  };
 
   # System packages
   environment.systemPackages = with pkgs; [
@@ -115,6 +124,19 @@
 
     # Transcoding
     handbrake
+
+    # Hyprland related packages
+    brightnessctl
+    hypridle
+    hyprlock
+    hyprpaper
+    libnotify
+    mako
+    networkmanagerapplet
+    pavucontrol
+    waybar
+    wlogout
+    wofi
   ];
 
 }
