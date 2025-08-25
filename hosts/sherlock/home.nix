@@ -1,11 +1,14 @@
 { config, lib, pkgs, osConfig, ... }: 
 
 {
-  home = {
+  home = 
+  let
+    ocamlPkgs = pkgs.ocamlPackages;
+  in {
     username = "kevin";
     homeDirectory = "/home/kevin";
     stateVersion = "25.05";
-    packages = with pkgs; [
+    packages = (with pkgs; [
       brave
       kitty
       mpv
@@ -16,13 +19,13 @@
       black                                   # Python Formatter
       ruff                                    # Python Linter
       pyright                                 # Python language server
-      (with ocamlPackages; [
-        ocaml-lsp
-        ocamlformat
-        merlin
-      ])
       qbittorrent
-    ];
+    ]) ++ 
+    (with ocamlPkgs; [
+      ocaml-lsp
+      ocamlformat
+      merlin
+    ])
   };
   imports = [
     ../../home/hyprland/hyprland.nix  # Hyprland config
