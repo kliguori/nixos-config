@@ -66,10 +66,10 @@
   };
 
   # libvirt networks and config
-  fileSystems."/etc/libvirt" = {
-    device = "/persist/etc/libvirt";
-    options = [ "bind" ];
-  };
+  # fileSystems."/etc/libvirt" = {
+  #   device = "/persist/etc/libvirt";
+  #   options = [ "bind" ];
+  # };
 
   # ---------------------------------------------
   # Directories to bind mount to /var/lib
