@@ -16,7 +16,8 @@ in {
     xwayland.enable = false;
 
     settings = {
-      monitor = ",preferred,auto,auto";
+      monitor = "HDMI-A-2, 2560x1440, 0x0, 1";
+      monitor = "HDMI-A-1, 2560x1440, 2560x0, 1";
 
       env = [
         "XCURSOR_SIZE,24"
