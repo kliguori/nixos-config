@@ -16,6 +16,11 @@
       black                                   # Python Formatter
       ruff                                    # Python Linter
       pyright                                 # Python language server
+      (with ocamlPackages; [
+        ocaml-lsp
+        ocamlformat
+        merlin
+      ])
       qbittorrent
     ];
   };
