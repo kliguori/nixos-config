@@ -12,6 +12,7 @@
     ./services.nix         # Include services configuration
     ./virtualisation.nix   # Include virtualisation configuration
     ./dracula.nix          # Include Dracula theme configuration
+    ./nerd-font.nix        # Include Dracula theme configuration
   ];
 
   # DO NOT CHANGE
