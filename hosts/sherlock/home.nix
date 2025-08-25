@@ -25,7 +25,7 @@
       ocaml-lsp
       ocamlformat
       merlin
-    ])
+    ]);
   };
   imports = [
     ../../home/hyprland/hyprland.nix  # Hyprland config
