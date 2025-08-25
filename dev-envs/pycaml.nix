@@ -13,7 +13,7 @@ pkgs.mkShell {
       seaborn
       scipy
       scikit-learn
-      jupyterlab
+      # jupyterlab
       ipykernel
       sympy
       requests
