@@ -121,6 +121,7 @@
     # Virtualisation
     libvirt
     virt-manager
+    virt-viewer
     qemu
 
     # Transcoding
