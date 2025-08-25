@@ -16,8 +16,22 @@ in {
     xwayland.enable = false;
 
     settings = {
-      monitor = "HDMI-A-2, 2560x1440, 0x0, 1";
-      monitor = "HDMI-A-1, 2560x1440, 2560x0, 1";
+      monitor = [
+        "HDMI-A-2,2560x1440,0x0,1"
+        "HDMI-A-1,2560x1440,2560x0,1"
+      ];
+
+      workspace = [
+        "1,monitor:HDMI-A-2"
+        "2,monitor:HDMI-A-2"
+        "3,monitor:HDMI-A-2"
+        "4,monitor:HDMI-A-2"
+        "5,monitor:HDMI-A-2"
+        "6,monitor:HDMI-A-1"
+        "7,monitor:HDMI-A-1"
+        "8,monitor:HDMI-A-1"
+        "9,monitor:HDMI-A-1"
+      ];
 
       env = [
         "XCURSOR_SIZE,24"
