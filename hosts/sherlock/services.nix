@@ -11,8 +11,8 @@
     # Enable xserver and budgie desktop environment
     xserver = {
       enable = true;                          # Enable xserver
-      displayManager.gdm.enable = false;      # Enable gdm display manager
-      desktopManager.gnome.enable = false;    # Enable gnome desktop environment
+      displayManager.gdm.enable = true;      # Enable gdm display manager
+      desktopManager.gnome.enable = true;    # Enable gnome desktop environment
       displayManager.lightdm.enable = false;  # Enable lightdm display manager
       desktopManager.budgie.enable = false;   # Enable budgie desktop environment
       videoDrivers = [ "nvidia" ];            # Use nvidia video drivers
