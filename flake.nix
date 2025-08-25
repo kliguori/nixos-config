@@ -22,7 +22,7 @@
     in {
 
       # Dev Shells
-      devShells.${x86}.python-dev = import ./dev-envs/python.nix { pkgs = pkgsx86; };
+      devShells.${x86}.pycaml = import ./dev-envs/pycaml.nix { pkgs = pkgsx86; };
       
       # Configurations
       nixosConfigurations = {

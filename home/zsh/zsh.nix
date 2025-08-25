@@ -13,7 +13,7 @@ in {
       gs = "git status";
       cl = "clear";
       rebuild = "sudo nixos-rebuild switch --flake .#$(hostname)";
-      python-dev = "nix develop $HOME/nixos-config#python-dev";
+      pycaml = "nix develop $HOME/nixos-config#pycaml";
     };
   };
 }
