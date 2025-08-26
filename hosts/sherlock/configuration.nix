@@ -49,6 +49,9 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # To be able to login from hyprlock
+  security.pam.services.hyprlock = {};
+
   # System programs
   programs = {
     hyprland = {
@@ -61,84 +64,89 @@
     thunar.enable = true;
   };
 
-  # System packages
-  environment.systemPackages = with pkgs; [
-    # Shell utilities
-    coreutils
-    findutils
-    gnugrep
-    gnused
-    gawk
-    less
-    which
-    file
-    tree
-    diffutils
-    man
-    pciutils
-    unzip
+  environment = {
+    # Environment variables
+    sessionVariables.NIXOS_OZONE_WL = "1";
 
-    # Editors
-    vim
-    neovim
-    nano
+    # System packages
+    systemPackages = with pkgs; [
+      # Shell utilities
+      coreutils
+      findutils
+      gnugrep
+      gnused
+      gawk
+      less
+      which
+      file
+      tree
+      diffutils
+      man
+      pciutils
+      unzip
 
-    # Networking
-    curl
-    wget
-    dnsutils       # Provides dig, nslookup
-    inetutils      # Provides host, etc.
-    iproute2
-    iputils
-    nettools       # Provides ifconfig, netstat, etc.
-    nmap
-    traceroute
+      # Editors
+      vim
+      neovim
+      nano
 
-    # Monitoring
-    htop
-    btop
-    fastfetch
-    strace
-    lsof
-    tmux
-    ripgrep
-    fd
-    bat
-    duf
-    ncdu
+      # Networking
+      curl
+      wget
+      dnsutils       # Provides dig, nslookup
+      inetutils      # Provides host, etc.
+      iproute2
+      iputils
+      nettools       # Provides ifconfig, netstat, etc.
+      nmap
+      traceroute
 
-    # Storage & filesystem tools
-    cryptsetup
-    rsync
-    zfs
-    parted
-    util-linux     # Provides mount, umount, lsblk, blkid, etc.
+      # Monitoring
+      htop
+      btop
+      fastfetch
+      strace
+      lsof
+      tmux
+      ripgrep
+      fd
+      bat
+      duf
+      ncdu
 
-    # Version control & symlinking
-    git
-    stow
+      # Storage & filesystem tools
+      cryptsetup
+      rsync
+      zfs
+      parted
+      util-linux     # Provides mount, umount, lsblk, blkid, etc.
 
-    # Virtualisation
-    libvirt
-    virt-manager
-    virt-viewer
-    qemu
+      # Version control & symlinking
+      git
+      stow
 
-    # Transcoding
-    handbrake
+      # Virtualisation
+      libvirt
+      virt-manager
+      virt-viewer
+      qemu
 
-    # Hyprland related packages
-    brightnessctl
-    hypridle
-    hyprlock
-    hyprpaper
-    libnotify
-    mako
-    networkmanagerapplet
-    pavucontrol
-    waybar
-    wlogout
-    wofi
-  ];
+      # Transcoding
+      handbrake
+
+      # Hyprland related packages
+      brightnessctl
+      hypridle
+      hyprlock
+      hyprpaper
+      libnotify
+      mako
+      networkmanagerapplet
+      pavucontrol
+      waybar
+      wlogout
+      wofi
+    ];
+  };  
 
 }
