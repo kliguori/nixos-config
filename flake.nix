@@ -15,14 +15,16 @@
       x86 = "x86_64-linux";
       aaL = "aarch64-linux";
       aaA = "aarch64-darwin";
-      pkgsx86 = import nixpkgs { 
-        system = "x86_64-linux"; 
-        config.allowUnfree = true;
-      };
     in {
 
       # Dev Shells
-      devShells.${x86}.pycaml = import ./dev-envs/pycaml.nix { pkgs = pkgsx86; };
+      devShells.${x86} = 
+      let
+        pkgs = import nixpkgs { system = x86; config.allowUnfree = true; }; 
+      in {
+        pycaml = import ./dev-envs/pycaml.nix { inherit pkgs; };
+        mpl = import ./dev-envs/mpl.nix { inherit pkgs; };
+      };     
       
       # Configurations
       nixosConfigurations = {
