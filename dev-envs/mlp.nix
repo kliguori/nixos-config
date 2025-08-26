@@ -4,7 +4,7 @@ let
   py = pkgs.python312;
 in {
   pkgs.mkShell {
-    name = "mpl";
+    name = "mlp";
     packages = [
       (py.withPackages (ps: with ps; [
         numpy
@@ -23,7 +23,7 @@ in {
     ];
 
     shellHook = ''
-      export NIX_DEV_SHELL_NAME=mpl
+      export NIX_DEV_SHELL_NAME=mlp
       export SHELL=${pkgs.zsh}/bin/zsh
       exec ${pkgs.zsh}/bin/zsh --login
     '';

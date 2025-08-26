@@ -23,7 +23,7 @@
         pkgs = import nixpkgs { system = x86; config.allowUnfree = true; }; 
       in {
         pycaml = import ./dev-envs/pycaml.nix { inherit pkgs; };
-        mpl = import ./dev-envs/mpl.nix { inherit pkgs; };
+        mlp = import ./dev-envs/mlp.nix { inherit pkgs; };
       };     
       
       # Configurations

@@ -14,7 +14,7 @@ in {
       cl = "clear";
       rebuild = "sudo nixos-rebuild switch --flake .#$(hostname)";
       pycaml = "nix develop /persist/nixos-config#pycaml";
-      mpl = "nix develop /persist/nixos-config#mpl";
+      mlp = "nix develop /persist/nixos-config#mlp";
       start-hyprland = "uwsm start hyprland-uwsm.desktop";
     };
   };
