@@ -5,7 +5,14 @@ let
     "HDMI-A-1" 
     "HDMI-A-2" 
   ];
-  wallpaperPath = "/persist/home/kevin/wallpapers/kyoto-night.jpg";
+  wallpaperPath = "/home/kevin/wallpapers/kyoto-night.png";
+
+  # Function to make background for each montor
+  mkBackground = monitors: wallpaperPath:
+    builtins.map (m: {
+      monitor = m;
+      path = wallpaperPath;
+    }) monitors;
 in {
   programs.hyprlock = {
     enable = true;
@@ -18,12 +25,7 @@ in {
         hide_cursor = true;
       };
 
-      background = [
-        {
-          monitor = monitors;
-          path = wallpaperPath;
-        }
-      ];
+      background = mkBackground monitors wallpaperPath;
 
       input-field = [
         {

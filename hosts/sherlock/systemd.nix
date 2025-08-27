@@ -10,6 +10,7 @@
       "d /persist/var/lib/tailscale 0700 root root - -"                       # Tailscale state
       "d /persist/var/lib/libvirt 0755 root root - -"                         # Libvirt state
       "d /persist/home/kevin/.ssh 0700 kevin users - -"                       # SSH keys
+      "d /persist/home/kevin/wallpapers 0755 kevin users - -"                 # Wallpapers
     ];
 
     # Note, this only writes the default.xml file to /etc/libvirt/qemu/networks/default.xml

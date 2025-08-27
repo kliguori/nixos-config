@@ -89,4 +89,10 @@
     options = [ "bind" ];
   };
 
+  # wallpapers
+  fileSystems."/home/kevin/wallpapers" = {
+    device = "/persist/home/kevin/wallpapers";
+    options = [ "bind" ];
+  };
+
 }
