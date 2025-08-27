@@ -1,6 +1,12 @@
 { config, lib, pkgs, ... }: 
 
-{
+let
+  monitors = [ 
+    "HDMI-A-1" 
+    "HDMI-A-2" 
+  ];
+  wallpaperPath = "/persist/home/kevin/wallpapers/kyoto-night.jpg";
+in {
   programs.hyprlock = {
     enable = true;
 
@@ -14,8 +20,8 @@
 
       background = [
         {
-          monitor = "eDP-1";
-          path = "/home/kevin/Pictures/wallpaper/wallpaper.jpg";
+          monitor = monitors;
+          path = wallpaperPath;
         }
       ];
 
@@ -26,7 +32,7 @@
           dots_center = true;
           fade_on_empty = false;
           placeholder_text = "Password...";
-          monitor = "eDP-1";
+          monitor = monitors;
           position = "0, 0";
           halign = "center";
           valign = "center";
