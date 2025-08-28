@@ -38,6 +38,9 @@
         "zfs"
       ];
 
+      luks.devices.cryptroot.device = "/dev/disk/by-label/cryptroot";
+
+      kernelModules = [ ];
       availableKernelModules = [
         "nvme"
         "ehci_pci"
@@ -46,10 +49,6 @@
         "sd_mod"
         "rtsx_pci_sdmmc"
       ];
-
-      kernelModules = [ ];
-
-      # luks.devices."crypt-data".device = "/dev/disk/by-label/luks-storage-drive";
 
       # rollback to blank root
       postDeviceCommands = lib.mkAfter ''

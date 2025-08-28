@@ -10,7 +10,7 @@
         partitions = {
           ESP = {
             name = "ESP";
-            size = "1GiB";
+            size = "1G";
             type = "EF00";
             content = {
               type = "filesystem";
@@ -33,6 +33,7 @@
             content = {
               type = "luks";
               name = "cryptroot"; # /dev/mapper/cryptroot
+              settings.label = "cryptroot";
               content = {
                 type = "zfs";
                 pool = "rpool";
@@ -61,7 +62,7 @@
 
       datasets = {
         root = {
-          type = "zfs_dataset";
+          type = "zfs_fs";
           mountpoint = "/";
           options = {
             canmount = "noauto";
@@ -69,7 +70,7 @@
         };
 
         nix = {
-          type = "zfs_dataset";
+          type = "zfs_fs";
           mountpoint = "/nix";
           options = {
             atime = "off";
@@ -77,17 +78,17 @@
         };
 
         persist = {
-          type = "zfs_dataset";
+          type = "zfs_fs";
           mountpoint = "/persist";
         };
 
         kevin = {
-          type = "zfs_dataset";
+          type = "zfs_fs";
           mountpoint = "/home/kevin";
         };
 
         crypt = {
-          type = "zfs_dataset";
+          type = "zfs_fs";
           mountpoint = "/home/kevin/crypt";
           options = {
             encryption = "aes-256-gcm";
