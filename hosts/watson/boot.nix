@@ -38,7 +38,7 @@
         "zfs"
       ];
 
-      luks.devices.cryptroot.device = "/dev/disk/by-label/cryptroot";
+      luks.devices.cryptroot.device = "/dev/disk/by-partlabel/disk-main-cryptroot";
 
       kernelModules = [ ];
       availableKernelModules = [

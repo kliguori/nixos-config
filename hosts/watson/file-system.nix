@@ -11,20 +11,7 @@
     algorithm = "zstd";
   };
 
-  # ---------------------------------------------
-  # Boot partition
-  # /boot
-  # ---------------------------------------------
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/NIXBOOT";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
-
-  # ---------------------------------------------
+ # ---------------------------------------------
   # Directories to bind mount to /etc
   # ---------------------------------------------
   # network connections
