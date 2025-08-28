@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -14,7 +12,6 @@
 
     kernelModules = [
       "kvm-amd" # Kernel module for AMD virtualization
-      "sg" # Kernel module for CD driver
     ];
 
     extraModulePackages = [ ];
@@ -32,20 +29,22 @@
       requestEncryptionCredentials = true;
       extraPools = [
         "rpool" # root pool
-        "dpool" # data pool
-        "bpool" # backup pool (local)
       ];
     };
 
     initrd = {
 
+      supportedFilesystems = [
+        "zfs"
+      ];
+
       availableKernelModules = [
-        "ahci"
         "nvme"
+        "ehci_pci"
         "xhci_pci"
-        "usbhid"
         "usb_storage"
         "sd_mod"
+        "rtsx_pci_sdmmc"
       ];
 
       kernelModules = [ ];

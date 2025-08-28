@@ -3,8 +3,13 @@
 }:
 
 {
-  # No swap devices
+  # Zram swap 
   swapDevices = [ ];
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
+    algorithm = "zstd";
+  };
 
   # ---------------------------------------------
   # Boot partition
@@ -17,54 +22,6 @@
       "fmask=0022"
       "dmask=0022"
     ];
-  };
-
-  # ---------------------------------------------
-  # Mountpoints for rpool datasets
-  # ---------------------------------------------
-  # root dataset
-  fileSystems."/" = {
-    device = "rpool/root";
-    fsType = "zfs";
-  };
-
-  # nix dataset
-  fileSystems."/nix" = {
-    device = "rpool/nix";
-    fsType = "zfs";
-  };
-
-  # persist dataset
-  fileSystems."/persist" = {
-    device = "rpool/persist";
-    fsType = "zfs";
-  };
-  
-  # kevin home dataset
-  fileSystems."/kevin" = {
-    device = "rpool/kevin";
-    fsType = "zfs";
-  };
-
-  # ---------------------------------------------
-  # Mountpoints for dpool datasets
-  # ---------------------------------------------
-  # vmachines dataset
-  fileSystems."/vmachines" = {
-    device = "dpool/crypt/vmachines";
-    fsType = "zfs";
-  };
-
-  # ubuntu-dev dataset
-  fileSystems."/vmachines/ubuntu-dev" = {
-    device = "dpool/crypt/vmachines/ubuntu-dev";
-    fsType = "zfs";
-  };
-
-  # the-ripper dataset
-  fileSystems."/vmachines/the-ripper" = {
-    device = "dpool/crypt/vmachines/the-ripper";
-    fsType = "zfs";
   };
 
   # ---------------------------------------------

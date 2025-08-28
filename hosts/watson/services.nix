@@ -4,17 +4,14 @@
 
 {
   services = {
-    blueman.enable = false; # Disable Blueman service
+    blueman.enable = true; # Disable Blueman service
     pulseaudio.enable = false; # Disable pulseaudio
 
     zfs.autoScrub.enable = true; # Enable automatic scrubbing of ZFS pools
     tailscale.enable = true; # Enable  tailscale
 
-    # Enable xserver and budgie desktop environment
-    xserver = {
-      enable = false; # Enable xserver
-      videoDrivers = [ "nvidia" ]; # Use nvidia video drivers
-    };
+    # Disable xserver  
+    xserver.enable = false; 
 
     # Enable pipewire
     pipewire = {
@@ -25,13 +22,5 @@
       jack.enable = true;
     };
 
-    # Enable ssh service
-    openssh = {
-      enable = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
-      };
-    };
   };
 }

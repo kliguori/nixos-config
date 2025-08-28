@@ -7,12 +7,14 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko.url = "github:nix-community/disko";
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nixpkgs,
+      disko,
       home-manager,
       ...
     }:
@@ -73,7 +75,14 @@
         watson = nixpkgs.lib.nixosSystem {
           system = x86;
           modules = [
+            # Declarative disk formatting 
+            disko.nixosModules.disko
+            { disko.devices = import ./disko.nix; }
+
+            # Watson configuration
             ./hosts/watson/configuration.nix
+
+            # Home configuration
             home-manager.nixosModules.home-manager
             {
               home-manager = {
