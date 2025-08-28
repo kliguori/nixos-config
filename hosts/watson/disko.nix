@@ -62,6 +62,7 @@
       root = {
         type = "zfs_fs";
         mountpoint = "/";
+        postCreateHook = "zfs snapshot rpool/root@blank";
         options = {
           canmount = "noauto";
         };
