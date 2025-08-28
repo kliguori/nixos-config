@@ -32,7 +32,6 @@
           content = {
             type = "luks";
             name = "cryptroot"; # /dev/mapper/cryptroot
-            settings.label = "cryptroot";
             content = {
               type = "zfs";
               pool = "rpool";
