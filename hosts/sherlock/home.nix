@@ -1,4 +1,7 @@
-{ config, lib, pkgs, osConfig, ... }: 
+{
+  pkgs,
+  ...
+}:
 
 {
   home = {
@@ -14,14 +17,13 @@
     ];
   };
   imports = [
-    ../../home/hyprland/hyprland.nix  # Hyprland config
-    ../../home/wofi/wofi.nix          # Wofi config
-    ../../home/waybar/waybar.nix      # Waybar config
-    ../../home/ghostty/ghostty.nix    # Ghostty config
-    ../../home/zsh/zsh.nix            # Zsh config
-    ../../home/starship/starship.nix  # Starship config
-    ../../home/git/git.nix            # Git config
-    ../../home/neovim/neovim.nix      # Neovim config
-    ../../home/vscode/vscode.nix      # VSCode config
+    ../../home/hyprland/hyprland.nix # Hyprland config
+    ../../home/wofi/wofi.nix # Wofi config
+    ../../home/waybar/waybar.nix # Waybar config
+    ../../home/ghostty/ghostty.nix # Ghostty config
+    ../../home/zsh/zsh.nix # Zsh config
+    ../../home/starship/starship.nix # Starship config
+    ../../home/git/git.nix # Git config
+    ../../home/neovim/neovim.nix # Neovim config
   ];
 }

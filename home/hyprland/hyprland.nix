@@ -1,20 +1,23 @@
-{ config, lib, pkgs, ... }:
+{
+  ...
+}:
 
 let
   terminal = "ghostty";
   fileManager = "thunar";
   menu = "wofi --show drun";
-in {
+in
+{
 
-  imports = [ 
+  imports = [
     ./hyprlock.nix
     ./hypridle.nix
-    ./hyprpaper.nix 
+    ./hyprpaper.nix
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    xwayland.enable = false;
 
     settings = {
       monitor = [

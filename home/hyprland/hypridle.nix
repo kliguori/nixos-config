@@ -1,4 +1,6 @@
-{ config, lib, pkgs, ... }: 
+{
+  ...
+}:
 
 {
   services.hypridle = {
@@ -13,7 +15,7 @@
         {
           timeout = 300;
           "on-timeout" = "brightnessctl set 10%";
-          "on-resume"   = "brightnessctl set 100%";
+          "on-resume" = "brightnessctl set 100%";
         }
         {
           timeout = 600;
@@ -22,7 +24,7 @@
         {
           timeout = 900;
           "on-timeout" = "loginctl suspend";
-          "on-resume"  = "hyprctl dispatch dpms on";
+          "on-resume" = "hyprctl dispatch dpms on";
         }
       ];
     };

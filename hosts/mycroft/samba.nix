@@ -1,39 +1,44 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   users.groups.sambakevin = { };
   users.groups.sambajane = { };
   users.groups.sambajack = { };
   users.groups.sambashared = { };
-  
+
   users.users.kevin = {
     isNormalUser = true;
     description = "Samba user Kevin";
-    group = "sambakevin";                   # primary group
-    extraGroups = [ "sambashared" ];        # can access shared directories
-    createHome = false;                     # no home directory
-    shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
-    hashedPassword = "!" ;                  # disable system login password
+    group = "sambakevin"; # primary group
+    extraGroups = [ "sambashared" ]; # can access shared directories
+    createHome = false; # no home directory
+    shell = "${pkgs.coreutils}/bin/false"; # prevent shell login
+    hashedPassword = "!"; # disable system login password
   };
 
   users.users.jane = {
     isNormalUser = true;
     description = "Samba user Jane";
-    group = "sambajane";                    # primary group
-    extraGroups = [ "sambashared" ];        # can access shared directories
-    createHome = false;                     # no home directory
-    shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
-    hashedPassword = "!" ;                  # disable system login password
+    group = "sambajane"; # primary group
+    extraGroups = [ "sambashared" ]; # can access shared directories
+    createHome = false; # no home directory
+    shell = "${pkgs.coreutils}/bin/false"; # prevent shell login
+    hashedPassword = "!"; # disable system login password
   };
 
   users.users.jack = {
     isNormalUser = true;
     description = "Samba user Jack";
-    group = "sambajack";                    # primary group
-    extraGroups = [ ];                      # no extra groups
-    createHome = false;                     # no home directory
-    shell = "${pkgs.coreutils}/bin/false";  # prevent shell login
-    hashedPassword = "!" ;                  # disable system login password
+    group = "sambajack"; # primary group
+    extraGroups = [ ]; # no extra groups
+    createHome = false; # no home directory
+    shell = "${pkgs.coreutils}/bin/false"; # prevent shell login
+    hashedPassword = "!"; # disable system login password
   };
 
   systemd.tmpfiles.rules = [
@@ -45,7 +50,7 @@
   services.samba = {
     enable = true;
     openFirewall = false;
-    winbindd.enable = false;  # Disable winbindd
+    winbindd.enable = false; # Disable winbindd
     settings = {
       global = {
         "security" = "user";
@@ -54,7 +59,7 @@
         "guest account" = "nobody";
         "map to guest" = "bad user";
       };
-      
+
       "kevin" = {
         "path" = "/srv/users/kevin";
         "browseable" = "no";
@@ -64,7 +69,7 @@
         "directory mask" = "0770";
         "valid user" = "@sambakevin";
       };
-      
+
       "jane" = {
         "path" = "/srv/users/jane";
         "browseable" = "no";

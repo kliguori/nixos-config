@@ -1,8 +1,12 @@
-{ config, lib, pkgs, osConfig, ... }:
+{
+  osConfig,
+  ...
+}:
 
 let
   c = osConfig.theme.colors;
-in {
+in
+{
   programs.starship = {
     enable = true;
     enableZshIntegration = true;

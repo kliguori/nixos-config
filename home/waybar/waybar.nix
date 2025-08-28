@@ -1,46 +1,70 @@
-{ config, lib, pkgs, osConfig, ... }:
-  
+{
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
+
 let
   f = osConfig.fonts;
   c = osConfig.theme.colors;
-in {
+in
+{
   programs.waybar = {
     enable = true;
 
-    settings = [{
-      layer = "top";
-      position = "top";
-      modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "hyprland/window" ];
-      modules-right = [ "tray" "pulseaudio" "battery" "clock" ];
+    settings = [
+      {
+        layer = "top";
+        position = "top";
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "hyprland/window" ];
+        modules-right = [
+          "tray"
+          "pulseaudio"
+          "battery"
+          "clock"
+        ];
 
-      clock = {
-        format = "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}";
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-      };
-
-      battery = {
-        states = {
-          warning = 30;
-          critical = 15;
+        clock = {
+          format = "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
-        format = "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%";
-        format-icons = [ "" "" "" "" "" ];
-        tooltip-format = "{time}";
-      };
 
-      pulseaudio = {
-        format = "{icon}  {volume}%";
-        format-muted = "";
-        format-icons.default = [ "" "" " " ];
-        on-click = "pavucontrol";
-      };
+        battery = {
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%";
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+          tooltip-format = "{time}";
+        };
 
-      network = {
-        format-wifi = "<span size='13000' foreground='#f5e0dc'>  </span>{essid}";
-        format-disconnected = "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected";
-      };
-    }];
+        pulseaudio = {
+          format = "{icon}  {volume}%";
+          format-muted = "";
+          format-icons.default = [
+            ""
+            ""
+            " "
+          ];
+          on-click = "pavucontrol";
+        };
+
+        network = {
+          format-wifi = "<span size='13000' foreground='#f5e0dc'>  </span>{essid}";
+          format-disconnected = "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected";
+        };
+      }
+    ];
 
     style = ''
       * {
@@ -79,4 +103,3 @@ in {
     '';
   };
 }
-  

@@ -1,9 +1,16 @@
-{ config, lib, pkgs, osConfig, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
 
 let
   f = osConfig.fonts;
   c = osConfig.theme.colors;
-in {
+in
+{
   programs.wofi.enable = true;
 
   xdg.configFile."wofi/style.css".text = ''

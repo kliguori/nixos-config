@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   #### Prometheus ####
@@ -11,7 +16,7 @@
 
     # Keep 30 days of metrics
     retentionTime = "30d";
-    
+
     # Scrape Prometheus itself + node exporter (host metrics).
     scrapeConfigs = [
       {
@@ -31,7 +36,13 @@
     listenAddress = "127.0.0.1";
     port = 9100;
     enabledCollectors = [
-      "systemd" "processes" "cpu" "meminfo" "filesystem" "netdev" "diskstats"
+      "systemd"
+      "processes"
+      "cpu"
+      "meminfo"
+      "filesystem"
+      "netdev"
+      "diskstats"
     ];
   };
 

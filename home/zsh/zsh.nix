@@ -1,8 +1,15 @@
-{ config, lib, pkgs, osConfig, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
 
 let
   c = osConfig.theme.colors;
-in {
+in
+{
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;

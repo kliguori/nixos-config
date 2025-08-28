@@ -2,22 +2,24 @@
 
 pkgs.mkShell {
   name = "mlp";
-  
+
   packages = with pkgs; [
-    (python312.withPackages (ps: with ps; [
-      numpy
-      scipy
-      sympy
-      pandas
-      scikit-learn
-      torch-bin
-      torchvision-bin
-      jupyterlab
-      matplotlib
-      seaborn
-      ffmpeg
-      tqdm
-    ]))
+    (python312.withPackages (
+      ps: with ps; [
+        numpy
+        scipy
+        sympy
+        pandas
+        scikit-learn
+        torch-bin
+        torchvision-bin
+        jupyterlab
+        matplotlib
+        seaborn
+        ffmpeg
+        tqdm
+      ]
+    ))
   ];
 
   shellHook = ''
@@ -26,4 +28,3 @@ pkgs.mkShell {
     exec ${pkgs.zsh}/bin/zsh --login
   '';
 }
-

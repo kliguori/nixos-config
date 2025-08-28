@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.glances.enable = true;
@@ -61,10 +66,11 @@
 
     services = [
       {
-        "Glances" = 
+        "Glances" =
           let
             port = toString config.services.glances.port;
-          in [
+          in
+          [
             {
               Info = {
                 widget = {

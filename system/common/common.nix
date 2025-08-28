@@ -1,21 +1,30 @@
-{ config, lib, pkgs, ... }: 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
-    ./system-options.nix             # Include system options
-    ../../themes/colors/dracula.nix  # Include dracula color scheme
+    ./system-options.nix # Include system options
+    ../../themes/colors/dracula.nix # Include dracula color scheme
     ../../themes/fonts/nerd-font.nix # Include JetBrainsMono NerdFont
   ];
-  
+
   # Basic settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];   # Enable flakes
-  nixpkgs.config.allowUnfree = true;                                 # Allow unfree software
-  nix.gc = {                                                         # Garbage collection
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ]; # Enable flakes
+  nixpkgs.config.allowUnfree = true; # Allow unfree software
+  nix.gc = {
+    # Garbage collection
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-  time.timeZone = "America/New_York";                                # Time zone and locale
+  time.timeZone = "America/New_York"; # Time zone and locale
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -31,9 +40,10 @@
 
   # Basic services
   services = {
-    tailscale.enable = true;      # Enable  tailscale
-    pulseaudio.enable = false;    # Disable pulseaudio
-    pipewire = {                  # Enable  pipewire  
+    tailscale.enable = true; # Enable  tailscale
+    pulseaudio.enable = false; # Disable pulseaudio
+    pipewire = {
+      # Enable  pipewire
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -43,7 +53,7 @@
   };
 
   # Basic programs
-  programs.zsh.enable = true;     # Enable zsh shell
+  programs.zsh.enable = true; # Enable zsh shell
 
   # Basic (CLI) packages
   environment.systemPackages = with pkgs; [
@@ -70,11 +80,11 @@
     # Networking
     curl
     wget
-    dnsutils       # Provides dig, nslookup
-    inetutils      # Provides host, etc.
+    dnsutils # Provides dig, nslookup
+    inetutils # Provides host, etc.
     iproute2
     iputils
-    nettools       # Provides ifconfig, netstat, etc.
+    nettools # Provides ifconfig, netstat, etc.
     nmap
     traceroute
 
@@ -96,7 +106,7 @@
     rsync
     zfs
     parted
-    util-linux     # Provides mount, umount, lsblk, blkid, etc.
+    util-linux # Provides mount, umount, lsblk, blkid, etc.
 
     # Version control & symlinking
     git

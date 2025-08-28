@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   users.users.kevin = {
@@ -6,11 +11,11 @@
     hashedPassword = "$y$j9T$PtbhYydbhh.z0qInjgrQS1$0oLkk3FlJztVtmVJqpWQWCDs8kdX2zzMkJKQkkzAtu9";
     shell = pkgs.zsh;
     description = "Kevin Liguori";
-    extraGroups = [ 
-      "wheel" 
-      "networkmanager" 
-      "libvirtd" 
-      "kvm" 
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "libvirtd"
+      "kvm"
     ];
   };
 }

@@ -9,41 +9,52 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }:
 
-    let 
+    let
       x86 = "x86_64-linux";
       aaL = "aarch64-linux";
       aaA = "aarch64-darwin";
-    in {
+    in
+    {
 
       # Dev Shells
-      devShells.${x86} = 
-      let
-        pkgs = import nixpkgs { system = x86; config.allowUnfree = true; }; 
-      in {
-        pycaml = import ./dev-envs/pycaml.nix { inherit pkgs; };
-        mlp = import ./dev-envs/mlp.nix { inherit pkgs; };
-      };     
-      
+      devShells.${x86} =
+        let
+          pkgs = import nixpkgs {
+            system = x86;
+            config.allowUnfree = true;
+          };
+        in
+        {
+          pycaml = import ./dev-envs/pycaml.nix { inherit pkgs; };
+          mlp = import ./dev-envs/mlp.nix { inherit pkgs; };
+        };
+
       # Configurations
       nixosConfigurations = {
-        
+
         # Mycroft: Dell laptop home server (Intel & Nvidia)
-	      mycroft = nixpkgs.lib.nixosSystem {
-	        system = x86;
-	        modules = [ ./hosts/mycroft/configuration.nix ];
-	      };
+        mycroft = nixpkgs.lib.nixosSystem {
+          system = x86;
+          modules = [ ./hosts/mycroft/configuration.nix ];
+        };
 
         # Ripper: Old Dell laptop (Intel & Nvidia)
         ripper = nixpkgs.lib.nixosSystem {
           system = x86;
           modules = [ ./hosts/ripper/configuration.nix ];
         };
-        
+
         # Sherlock: Desktop (AMD Ryzen 9 & Nvidia RTX2080Ti)
-        sherlock = nixpkgs.lib.nixosSystem {       
-          system = x86;                         
+        sherlock = nixpkgs.lib.nixosSystem {
+          system = x86;
           modules = [
             ./hosts/sherlock/configuration.nix
             home-manager.nixosModules.home-manager
@@ -59,8 +70,8 @@
         };
 
         # Watson: Thinkpad T14 (AMD)
-        watson = nixpkgs.lib.nixosSystem {       
-          system = x86;                         
+        watson = nixpkgs.lib.nixosSystem {
+          system = x86;
           modules = [
             ./hosts/watson/configuration.nix
             home-manager.nixosModules.home-manager
@@ -75,9 +86,9 @@
           ];
         };
 
-        # Lestrade: Dell XPS 15 (Intel & Nvidia) 
-        lestrade = nixpkgs.lib.nixosSystem {       
-          system = x86;                         
+        # Lestrade: Dell XPS 15 (Intel & Nvidia)
+        lestrade = nixpkgs.lib.nixosSystem {
+          system = x86;
           modules = [
             ./hosts/lestrade/configuration.nix
             home-manager.nixosModules.home-manager
@@ -91,10 +102,10 @@
             }
           ];
         };
-        
+
         # Mary: Custom ISO
-        
-      };  
+
+      };
     };
 
 }

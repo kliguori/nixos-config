@@ -5,20 +5,22 @@ pkgs.mkShell {
 
   packages = with pkgs; [
     # --- Python env ---
-    (python311.withPackages (ps: with ps; [
-      # jax
-      numpy
-      pandas
-      matplotlib
-      seaborn
-      scipy
-      scikit-learn
-      # jupyterlab
-      ipykernel
-      sympy
-      requests
-      tqdm
-    ]))
+    (python311.withPackages (
+      ps: with ps; [
+        # jax
+        numpy
+        pandas
+        matplotlib
+        seaborn
+        scipy
+        scikit-learn
+        # jupyterlab
+        ipykernel
+        sympy
+        requests
+        tqdm
+      ]
+    ))
 
     # --- Ocaml toolchain ---
     (with ocamlPackages; [

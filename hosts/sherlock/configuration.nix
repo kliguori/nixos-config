@@ -1,18 +1,23 @@
-{ config, lib, pkgs, modulesPath, ... }: 
+{
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
-  imports = [ 
+  imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./hardware.nix         # Include hardware configuration
-    ./boot.nix             # Include boot configuration
-    ./users.nix            # Include user configuration
-    ./file-system.nix      # Include file system configuration
-    ./systemd.nix          # Include systemd configuration 
-    ./networking.nix       # Include networking configuration
-    ./services.nix         # Include services configuration
-    ./virtualisation.nix   # Include virtualisation configuration
-    ./dracula.nix          # Include Dracula theme configuration
-    ./nerd-font.nix        # Include Dracula theme configuration
+    ./hardware.nix # Include hardware configuration
+    ./boot.nix # Include boot configuration
+    ./users.nix # Include user configuration
+    ./file-system.nix # Include file system configuration
+    ./systemd.nix # Include systemd configuration
+    ./networking.nix # Include networking configuration
+    ./services.nix # Include services configuration
+    ./virtualisation.nix # Include virtualisation configuration
+    ./dracula.nix # Include Dracula theme configuration
+    ./nerd-font.nix # Include Dracula theme configuration
   ];
 
   # DO NOT CHANGE
@@ -21,13 +26,17 @@
   # Nixpkgs settings
   nixpkgs = {
     hostPlatform = lib.mkDefault "x86_64-linux";
-    config.allowUnfree = true;   # Allow unfree software
+    config.allowUnfree = true; # Allow unfree software
   };
-  
+
   # Nix settings
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];   # Enable flakes
-    gc = {                                                         # Garbage collection
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ]; # Enable flakes
+    gc = {
+      # Garbage collection
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
@@ -50,16 +59,16 @@
   };
 
   # To be able to login from hyprlock
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
 
   # System programs
   programs = {
     hyprland = {
       enable = true;
       withUWSM = true;
-      xwayland.enable = true;
+      xwayland.enable = false;
     };
-    zsh.enable = true;   # Enable zsh shell
+    zsh.enable = true; # Enable zsh shell
     uwsm.enable = true;
     thunar.enable = true;
   };
@@ -93,11 +102,11 @@
       # Networking
       curl
       wget
-      dnsutils       # Provides dig, nslookup
-      inetutils      # Provides host, etc.
+      dnsutils # Provides dig, nslookup
+      inetutils # Provides host, etc.
       iproute2
       iputils
-      nettools       # Provides ifconfig, netstat, etc.
+      nettools # Provides ifconfig, netstat, etc.
       nmap
       traceroute
 
@@ -119,7 +128,7 @@
       rsync
       zfs
       parted
-      util-linux     # Provides mount, umount, lsblk, blkid, etc.
+      util-linux # Provides mount, umount, lsblk, blkid, etc.
 
       # Version control & symlinking
       git
@@ -147,6 +156,6 @@
       wlogout
       wofi
     ];
-  };  
+  };
 
 }
