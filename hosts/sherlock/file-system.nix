@@ -39,6 +39,12 @@
     device = "rpool/persist";
     fsType = "zfs";
   };
+  
+  # kevin home dataset
+  fileSystems."/kevin" = {
+    device = "rpool/kevin";
+    fsType = "zfs";
+  };
 
   # ---------------------------------------------
   # Mountpoints for dpool datasets
@@ -89,21 +95,21 @@
   # Directories to bind mount to /home
   # ---------------------------------------------
   # nix-config
-  fileSystems."/home/kevin/nix-config" = {
-    device = "/persist/home/kevin/nix-config";
-    options = [ "bind" ];
-  };
+  #fileSystems."/home/kevin/nix-config" = {
+  #  device = "/persist/home/kevin/nix-config";
+  #  options = [ "bind" ];
+  #};
 
   # ssh keys
-  fileSystems."/home/kevin/.ssh" = {
-    device = "/persist/home/kevin/.ssh";
-    options = [ "bind" ];
-  };
+  #fileSystems."/home/kevin/.ssh" = {
+  #  device = "/persist/home/kevin/.ssh";
+  #  options = [ "bind" ];
+  #};
 
   # wallpapers
-  fileSystems."/home/kevin/wallpapers" = {
-    device = "/persist/home/kevin/wallpapers";
-    options = [ "bind" ];
-  };
+  #fileSystems."/home/kevin/wallpapers" = {
+  #  device = "/persist/home/kevin/wallpapers";
+  #  options = [ "bind" ];
+  #};
 
 }
