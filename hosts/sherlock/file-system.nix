@@ -91,25 +91,4 @@
     options = [ "bind" ];
   };
 
-  # ---------------------------------------------
-  # Directories to bind mount to /home
-  # ---------------------------------------------
-  # nix-config
-  #fileSystems."/home/kevin/nix-config" = {
-  #  device = "/persist/home/kevin/nix-config";
-  #  options = [ "bind" ];
-  #};
-
-  # ssh keys
-  #fileSystems."/home/kevin/.ssh" = {
-  #  device = "/persist/home/kevin/.ssh";
-  #  options = [ "bind" ];
-  #};
-
-  # wallpapers
-  #fileSystems."/home/kevin/wallpapers" = {
-  #  device = "/persist/home/kevin/wallpapers";
-  #  options = [ "bind" ];
-  #};
-
 }
