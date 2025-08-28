@@ -77,7 +77,7 @@
           modules = [
             # Declarative disk formatting 
             disko.nixosModules.disko
-            { disko.devices = import ./disko.nix; }
+            { disko.devices = import ./hosts/watson/disko.nix; }
 
             # Watson configuration
             ./hosts/watson/configuration.nix
