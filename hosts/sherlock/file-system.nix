@@ -41,7 +41,7 @@
   };
   
   # kevin home dataset
-  fileSystems."/kevin" = {
+  fileSystems."/home/kevin" = {
     device = "rpool/kevin";
     fsType = "zfs";
   };
