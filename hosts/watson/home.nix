@@ -17,7 +17,7 @@
     ];
   };
   imports = [
-    ../../home/hyprland/hyprland.nix # Hyprland config
+    ../../home/hyprland-watson/hyprland.nix # Hyprland config
     ../../home/wofi/wofi.nix # Wofi config
     ../../home/waybar/waybar.nix # Waybar config
     ../../home/ghostty/ghostty.nix # Ghostty config
